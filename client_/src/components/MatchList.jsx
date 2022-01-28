@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import MatcheFinder from '../apis/MatcheFinder';
+import MatchFinder from '../apis/MatchFinder';
 import { MatchesContext } from '../context/MatchesContext';
 
 const MatchList = (props) => {
@@ -8,7 +8,7 @@ const MatchList = (props) => {
    useEffect( ()=> {
         const fetchData = async () => {
             try {
-                const response = await  MatcheFinder.get("/");
+                const response = await  MatchFinder.get("/");
                 setMatches(response.data.data.matches);
             } catch (err) {}
         }
@@ -18,7 +18,7 @@ const MatchList = (props) => {
    
    const handleDelete = async (id) => {
      try {
-        const response = await MatcheFinder.delete(`/${id}`);
+        const response = await MatchFinder.delete(`/${id}`);
         setMatches(matches.filter(match=>{
             return match.id !== id
         }))

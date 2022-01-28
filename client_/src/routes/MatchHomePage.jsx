@@ -1,10 +1,10 @@
 import React from 'react';
 import MatchList from '../components/MatchList';
 
-const Home = () => {
+const MatchHomePage = () => {
   return (<div>
       <MatchList/>
   </div>);
 };
 
-export default Home;
+export default MatchHomePage;
