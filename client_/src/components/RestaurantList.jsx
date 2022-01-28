@@ -52,14 +52,14 @@ const RestaurantList = (props) => {
                   )
                   
               })}
-              {/* <tr>
+              <tr>
                   <td> HI</td>
                   <td> HI</td>
                   <td> HI</td>
                   <td> HI</td>
                   <td> <button className="btn btn-warning">Update</button></td>
                   <td> <button className="btn btn-danger">Delete</button></td>
-              </tr> */}
+              </tr>
           </tbody>
       </table>
   </div>;
