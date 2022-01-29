@@ -71,7 +71,7 @@ app.get("/pointstable/:year", async (req, res)=>{
          from team),
         NRRVals (tid, NRR) as ( select tid, sum(val) from N group by tid),
         AllVals as (select * from NRRVals, CountVals where tid = team_id)
-        select * , (mat - won- tied)  as lost from team, AllVals where team.team_id = tid;`, [req.params.year]);
+        select * , (mat - won- tied)  as lost from team, AllVals where team.team_id = tid order by pts desc;`, [req.params.year]);
     // console.log(results.data.data.matchInfo);
         res.status(200).json({
             status: "success",
