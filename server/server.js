@@ -169,7 +169,7 @@ app.post("/venue", async (req,res)=>{
     console.log(req.body);
 
     try{
-        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values (10000, $1, $2, 'NEW_COUNTRY', 50) returning *;",[req.body.name, req.body.location]);
+        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values (999, $1, $2, $3, $4) returning *;",[req.body.name, req.body.location, req.body.city, req.body.capacity]);
         console.log(results);
         res.status(200).json({
             status: "success",

@@ -6,8 +6,8 @@ import VenueList from '../components/VenueList';
 const VenueHomePage = () => {
   return (<div>
       <Header/>
-      <AddVenue/>
       <VenueList/>
+      <AddVenue/>
   </div>);
 };
 

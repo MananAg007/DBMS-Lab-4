@@ -26,12 +26,9 @@ const VenueList = (props) => {
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">A</th>
-                <th scope = "col">B</th>
-                <th scope = "col">C</th>
-                <th scope = "col">D</th>
-                <th scope = "col">E</th>
-                <th scope = "col">F</th>
+                <th scope = "col">Venue ID</th>
+                <th scope = "col">Venue Name</th>
+                <th scope = "col">City</th>
             </tr>
           </thead>
           <tbody>
@@ -42,12 +39,8 @@ const VenueList = (props) => {
                       <td>{venue.venue_id}</td>
                       <td>{venue.venue_name}</td>
                       <td>{venue.city_name}</td>
-                      <td>{venue.country_name}</td>
-                      <td>{venue.capacity_name}</td>
-                      <td>HI</td>
                   </tr>
                   )
-                  
               })}
           </tbody>
       </table>
