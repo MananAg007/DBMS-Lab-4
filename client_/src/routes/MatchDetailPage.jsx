@@ -5,7 +5,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
-import ScoreCard from "../components/ScoreCard";
+// import ScoreCard from "../components/ScoreCard";
 import { Context } from '../context/Context';
 const MatchDetailPage = () => {
   const { id } = useParams();
@@ -27,39 +27,47 @@ const MatchDetailPage = () => {
 
     fetchData();
   }, []);
-  return (
-    <div>
-      HI there
-      <ScoreCard></ScoreCard>
-      {/* {selectedMatch && (
-        <>
-          <h1 className="text-center display-1">
-            {selectedMatch.match.name}
-          </h1>
-          <div className="text-center">
-            <StarRating rating={selectedMatch.match.average_rating} />
-            <span className="text-warning ml-1">
-              {selectedMatch.match.count
-                ? `(${selectedMatch.match.count})`
-                : "(0)"}
-            </span>
-          </div>
-          <div className="mt-3">
-            <Reviews reviews={selectedMatch.reviews} />
-          </div>
-          <AddReview />
-        </>
-      )} */}
-    </div>
-  );
-};
-//   return (<div> Match-detail-Page
-//     {/* <ScoreCard></ScoreCard> */}
-//     {/* <ScoreComparison></ScoreComparison> */}
-//     {/* <MatchSummary></MatchSummary>  */}
-    
-//   </div>);
-// };
+  
+  return <div>
+      <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
+      <h3>Inning 1 : </h3>
+      <h3> BOWLING</h3>
+      <h3> BATTING</h3>
+      <h3> MATCH INFO</h3>
+      <table className="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colSpan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
 
+
+
+  {/* <h4>'${matchInfo}'</h4> */}
+  </div>
+};
 export default MatchDetailPage;
 

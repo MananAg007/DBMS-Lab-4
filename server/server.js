@@ -30,6 +30,7 @@ app.get("/matches", async (req, res)=>{
 
 // @T- /matches/id
 app.get("/matches/:id", async (req, res)=>{
+    console.log("HI")
     console.log(req.params);
     
     try {

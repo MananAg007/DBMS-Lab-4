@@ -1,15 +1,18 @@
 import React, {useContext, useEffect} from 'react';
+import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
 
 const ScoreCard = (props) => {
+  const { id } = useParams();
     const {matchInfo, setMatchInfo} = useContext(Context)
     useEffect( ()=> {
-         const fetchData = async (id) => {
+         const fetchData = async () => {
              try {
                  const response = await  MatchFinder.get(`/matches/${id}`);
-                 console.log(response);
-                 setMatchInfo(response.data.data.matchList);
+                //  console.log(response.data.data);
+                 setMatchInfo(response.data.data);
+                //  console.log(matchInfo);
              } catch (err) {}
          }
  
@@ -63,40 +66,9 @@ const ScoreCard = (props) => {
 </table>
 
 
-<div className='list-group'>
-      <table className="table table-hover table-dark">
-          <thead>
-            <tr className='bg-primary'>
-                <th scope = "col">Batter</th>
-                <th scope = "col">Runs</th>
-                <th scope = "col">Fours</th>
-                <th scope = "col">Sixes</th>
-                <th scope = "col">Balls Faced</th>
-                {/* <th scope = "col">F</th> */}
-            </tr>
-          </thead>
-          {/* <tbody>
-              {matchInfo && matchInfo .map(match=> {
-                  return (
-                    //   @T - Do we need more key attributes?
-                    <tr 
-                    // onClick={() => handleMatchSelect(match.match_id)} 
-                    key={match.match_id} >
-                    <td> {match.team_name1}</td>
-                    <td> {match.team_name2}</td>
-                    <td> {match.venue_name}</td>
-                    <td> {match.city_name}</td>
-                    <td> <button className="btn btn-warning">Update</button></td>
-                    <td> <button className="btn btn-danger">Delete</button></td>
-               
-                   </tr>
-                  )
-                  
-              })}
-          </tbody> */}
-      </table>
-  </div>;
-  </div>;
+
+  {/* <h4>'${matchInfo}'</h4> */}
+  </div>
 };
 
 
