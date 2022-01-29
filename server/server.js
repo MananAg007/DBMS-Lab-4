@@ -149,7 +149,7 @@ app.get("/venue/:id", async (req, res) => {
         res.status(200).json({
             status: "success",
             data: {
-                venue: results.rows
+                venue: results.rows[0]
             }
         });
     }
