@@ -3,13 +3,13 @@ import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
 
 const ScoreCard = (props) => {
-    const {matches, setMatches} = useContext(Context)
+    const {matchInfo, setMatchInfo} = useContext(Context)
     useEffect( ()=> {
          const fetchData = async (id) => {
              try {
                  const response = await  MatchFinder.get(`/matches/${id}`);
                  console.log(response);
-                //  setMatches(response.data.data.matchList);
+                 setMatchInfo(response.data.data.matchList);
              } catch (err) {}
          }
  
@@ -61,6 +61,41 @@ const ScoreCard = (props) => {
     </tr>
   </tbody>
 </table>
+
+
+<div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Batter</th>
+                <th scope = "col">Runs</th>
+                <th scope = "col">Fours</th>
+                <th scope = "col">Sixes</th>
+                <th scope = "col">Balls Faced</th>
+                {/* <th scope = "col">F</th> */}
+            </tr>
+          </thead>
+          {/* <tbody>
+              {matchInfo && matchInfo .map(match=> {
+                  return (
+                    //   @T - Do we need more key attributes?
+                    <tr 
+                    // onClick={() => handleMatchSelect(match.match_id)} 
+                    key={match.match_id} >
+                    <td> {match.team_name1}</td>
+                    <td> {match.team_name2}</td>
+                    <td> {match.venue_name}</td>
+                    <td> {match.city_name}</td>
+                    <td> <button className="btn btn-warning">Update</button></td>
+                    <td> <button className="btn btn-danger">Delete</button></td>
+               
+                   </tr>
+                  )
+                  
+              })}
+          </tbody> */}
+      </table>
+  </div>;
   </div>;
 };
 
