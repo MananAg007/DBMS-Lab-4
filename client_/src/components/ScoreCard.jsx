@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 import MatchFinder from '../apis/MatchFinder';
-import { MatchesContext } from '../context/MatchesContext';
+import { Context } from '../context/Context';
 
 const ScoreCard = (props) => {
-    const {matches, setMatches} = useContext(MatchesContext)
+    const {matches, setMatches} = useContext(Context)
     useEffect( ()=> {
          const fetchData = async (id) => {
              try {

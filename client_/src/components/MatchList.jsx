@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import MatchFinder from '../apis/MatchFinder';
-import { MatchesContext } from '../context/MatchesContext';
+import { Context } from '../context/Context';
 import { useHistory } from "react-router-dom";
 const MatchList = (props) => {
     
-   const {matches, setMatches} = useContext(MatchesContext)
+   const {matches, setMatches} = useContext(Context)
    let history = useHistory();
    useEffect( ()=> {
         const fetchData = async () => {

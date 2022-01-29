@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import VenueFinder from '../apis/VenueFinder';
-import { VenueContext } from '../context/VenueContext';
+import { Context } from '../context/Context';
 
 const AddVenue = () => {
-    const {addVenues} = useContext(VenueContext)
+    const {addVenues} = useContext(Context)
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
     const [priceRange, setPriceRange] = useState("Price Range")

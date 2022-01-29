@@ -2,11 +2,11 @@ import React , { useContext, useEffect }from 'react';
 import { useParams } from 'react-router-dom';
 
 import MatchFinder from '../apis/MatchFinder';
-import { MatchesContext } from '../context/MatchesContext';
+import { Context } from '../context/Context';
 function PointsTablePage() {
     const {year} = useParams();
     const {pointTable, setPointTable } = useContext(
-        MatchesContext
+        Context
       );
  useEffect(()=>{
 

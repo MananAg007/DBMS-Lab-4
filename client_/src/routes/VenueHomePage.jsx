@@ -3,7 +3,7 @@ import AddVenue from '../components/AddVenue';
 import Header from '../components/Header';
 import VenueList from '../components/VenueList';
 
-const Home = () => {
+const VenueHomePage = () => {
   return (<div>
       <Header/>
       <AddVenue/>
@@ -11,4 +11,4 @@ const Home = () => {
   </div>);
 };
 
-export default Home;
+export default VenueHomePage;

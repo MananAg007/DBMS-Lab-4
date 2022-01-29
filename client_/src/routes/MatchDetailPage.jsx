@@ -6,11 +6,11 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
 import ScoreCard from "../components/ScoreCard";
-import { MatchesContext } from '../context/MatchesContext';
+import { Context } from '../context/Context';
 const MatchDetailPage = () => {
   const { id } = useParams();
   const { selectedMatch, setSelectedMatch } = useContext(
-    MatchesContext
+    Context
   );
 
   useEffect(() => {

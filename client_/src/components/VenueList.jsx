@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import VenueFinder from '../apis/VenueFinder';
-import { VenueContext } from '../context/VenueContext';
+import { Context } from '../context/Context';
 
 const VenueList = (props) => {
     
-   const {venues, setVenues} = useContext(VenueContext)
+   const {venues, setVenues} = useContext(Context)
    useEffect( ()=> {
         const fetchData = async () => {
             try {
