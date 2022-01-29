@@ -1,14 +1,26 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MatchFinder from '../apis/VenueFinder';
+import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
 
 const VenueDetailPage = () => {
   const { id } = useParams();
-  const {venues, setVenues} = useContext(Context)
+  const {selectedVenue, setSelectedVenue} = useContext(Context)
+
+  useEffect( ()=> {
+    const fetchData = async () => {
+        try {
+            const response = await  VenueFinder.get(`/${id}`);
+            setSelectedVenue(response.data.data.venue);
+        } catch (err) {}
+    }
+
+    fetchData();
+},[]) 
+
   return <div>
       <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
-      <h3>Venue Name </h3>
+      <h3> Venue Name {selectedVenue.venue_name} </h3>
       <h3> Address</h3>
       <h3> Capacity</h3>
       <h3> Total matches played</h3>

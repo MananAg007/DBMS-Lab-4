@@ -124,7 +124,7 @@ app.get("/venue", async (req, res)=>{
 
     try{
         const results = await db.query("select * from venue");
-        console.log(results);
+        // console.log(results);
         res.status(200).json({
             status: "success",
             results: results.rows.length,
@@ -145,10 +145,11 @@ app.get("/venue/:id", async (req, res) => {
     
     try {
         const results = await db.query("select * from venue where venue_id = $1", [req.params.id]);
+        // console.log(results.rows);
         res.status(200).json({
             status: "success",
             data: {
-                venue: results.rows[0]
+                venue: results.rows
             }
         });
     }

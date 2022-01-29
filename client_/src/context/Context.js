@@ -6,7 +6,8 @@ export const ContextProvider = (props) => {
   const [matches, setMatches] = useState([]);
   const [venues, setVenues] = useState([]);
   const [selectedMatch, setSelectedMatch] = useState(null);
-  const [pointTable, setPointTable] = useState([])
+  const [selectedVenue, setSelectedVenue] = useState([]);
+  const [pointTable, setPointTable] = useState([]);
 
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
@@ -25,6 +26,8 @@ export const ContextProvider = (props) => {
         setPointTable,
         selectedMatch,
         setSelectedMatch,
+        selectedVenue,
+        setSelectedVenue,
         venues, 
         setVenues, 
         addVenues,
