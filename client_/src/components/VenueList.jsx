@@ -1,10 +1,12 @@
 import React, {useContext, useEffect} from 'react';
 import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
+import { useHistory } from "react-router-dom";
 
 const VenueList = (props) => {
     
    const {venues, setVenues} = useContext(Context)
+   let history = useHistory();
    useEffect( ()=> {
         const fetchData = async () => {
             try {
@@ -17,6 +19,9 @@ const VenueList = (props) => {
         fetchData();
    },[]) 
    
+   const handleVenueSelect = (id) => {
+    history.push(`/venue/${id}`);
+  };
   return <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -32,7 +37,8 @@ const VenueList = (props) => {
           <tbody>
               {venues && venues.map(venue => {
                   return (
-                    <tr key={venue.venue_id}>
+                    <tr onClick={() => handleVenueSelect(venue.venue_id)} 
+                    key={venue.venue_id}>
                       <td>{venue.venue_id}</td>
                       <td>{venue.venue_name}</td>
                       <td>{venue.city_name}</td>
