@@ -17,8 +17,7 @@ const MatchDetailPage = () => {
     const fetchData = async () => {
       try {
         const response = await MatchFinder.get(`/matches/${id}`);
-        console.log(response);
-
+        console.log(response.data.data.innings1_batting);
         setSelectedMatch(response.data.data);
       } catch (err) {
         console.log(err);
@@ -64,10 +63,40 @@ const MatchDetailPage = () => {
   </tbody>
 </table>
 
+<div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Batter</th>
+                <th scope = "col">Runs</th>
+                <th scope = "col">Fours</th>
+                <th scope = "col">Sixes</th>
+                <th scope = "col">Balls Faced</th>
+                {/* <th scope = "col">F</th> */}
+            </tr>
+          </thead>
+   
+<tbody>
+{/* {selectedMatch.innings1_batting && selectedMatch.innings1_batting .map(match=> {
+    return ( <tr  key={1} >
 
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    
+     </tr>
+    );
+    
+})} */}
 
-  {/* <h4>'${matchInfo}'</h4> */}
+</tbody>      
+      </table>
+  </div>
+
   </div>
 };
 export default MatchDetailPage;
+
 
