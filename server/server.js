@@ -126,6 +126,25 @@ app.get("/venue/:id", async (req, res) => {
     
 });
 
+
+app.post("/venue", async (req,res)=>{
+    console.log(req.body);
+
+    try{
+        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values ($1, $2, 'NEW_CITY', 'NEW_COUNTRY', 50) returning *",[req.body.name, req.body.location]);
+        console.log(results);
+        res.status(200).json({
+            status: "success",
+            data: {
+                venue: results.rows[0]
+            }
+        });
+    }catch (err) {
+        console.log(err);
+    }
+    
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`server is up and listening on port ${port}`);
