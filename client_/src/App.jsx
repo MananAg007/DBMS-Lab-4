@@ -1,12 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from "./routes/Home"
-import UpdatePage from "./routes/UpdatePage"
 import MatchHomePage from './routes/MatchHomePage';
 import MatchDetailPage from './routes/MatchDetailPage';
 import VenueHomePage from './routes/VenueHomePage';
 import VenueDetailPage from './routes/VenueDetailPage';
-import RestaurantDetailPage from "./routes/RestaurantDetailPage"
 import { ContextProvider } from './context/Context';
 import PointsTablePage from './routes/PointsTablePage';
 const App = () => {
