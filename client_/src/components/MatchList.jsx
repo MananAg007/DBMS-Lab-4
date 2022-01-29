@@ -1,10 +1,11 @@
 import React, {useContext, useEffect} from 'react';
 import MatchFinder from '../apis/MatchFinder';
 import { MatchesContext } from '../context/MatchesContext';
-
+import { useHistory } from "react-router-dom";
 const MatchList = (props) => {
     
    const {matches, setMatches} = useContext(MatchesContext)
+   let history = useHistory();
    useEffect( ()=> {
         const fetchData = async () => {
             try {
@@ -17,16 +18,19 @@ const MatchList = (props) => {
         fetchData();
    },[]) 
    
-   const handleDelete = async (id) => {
-     try {
-        const response = await MatchFinder.delete(`/${id}`);
-        setMatches(matches.filter(match=>{
-            return match.id !== id
-        }))
-     } catch (err) {
+   const handleMatchSelect = (id) => {
+    history.push(`/matches/${id}`);
+  };
+//    const handleDelete = async (id) => {
+//      try {
+//         const response = await MatchFinder.delete(`/${id}`);
+//         setMatches(matches.filter(match=>{
+//             return match.id !== id
+//         }))
+//      } catch (err) {
 
-     }
-   }
+//      }
+//    }
   return <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -42,11 +46,14 @@ const MatchList = (props) => {
           <tbody>
               {matches && matches.map(match=> {
                   return (
-                    <tr key={match.match_id}>
-                    <td> {match.team1}</td>
-                    <td> {match.team2}</td>
-                    <td> HI</td>
-                    <td> HI</td>
+                    //   @T - Do we need more key attributes?
+                    <tr 
+                    onClick={() => handleMatchSelect(match.match_id)} 
+                    key={match.match_id, match.venue_id} >
+                    <td> {match.team_name1}</td>
+                    <td> {match.team_name2}</td>
+                    <td> {match.venue_name}</td>
+                    <td> {match.city_name}</td>
                     <td> <button className="btn btn-warning">Update</button></td>
                     <td> <button className="btn btn-danger">Delete</button></td>
                
