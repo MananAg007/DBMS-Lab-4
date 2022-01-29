@@ -123,7 +123,7 @@ app.get("/pointstable/:year", async (req, res)=>{
 app.get("/venue", async (req, res)=>{
 
     try{
-        const results = await db.query("select * from venue");
+        const results = await db.query("select * from venue;");
         // console.log(results);
         res.status(200).json({
             status: "success",
@@ -145,13 +145,16 @@ app.get("/venue/:id", async (req, res) => {
     
     try {
         const q1 = db.query("select * from venue where venue_id = $1;", [req.params.id]);
-        const q2 = db.query("select count(*) as cn from venue;");
-        // console.log(results.rows);
+        const q2 = db.query("select count(*) from match, venue where match.venue_id = $1;", [req.params.id]);
+        const q3 = db.query("With res as (select match.match_id, sum(runs_scored + extra_runs) as runs from ball_by_ball, match where ball_by_ball.match_id = match.match_id and match.venue_id = $1 group by match.match_id) select max(runs) as highest, min(runs) as lowest from res;", [req.params.id])
+        const q4 = db.query("With res as (select match.match_id, sum(runs_scored + extra_runs) as runs1 from ball_by_ball, match where ball_by_ball.match_id = match.match_id and match.venue_id = $1 and innings_no = 1 group by match.match_id), res1 as (select match.match_id, sum(runs_scored + extra_runs) as runs2 from ball_by_ball, match where ball_by_ball.match_id = match.match_id and match.venue_id = $1 and innings_no = 2 group by match.match_id) select max(runs1) as highest from res, res1 where res.match_id = res1.match_id;", [req.params.id])
         res.status(200).json({
             status: "success",
             data: {
-                r1: (await q1).rows[0],
-                r2: (await q2).rows[0]
+                r1: (await q1).rows[0], 
+                r2: (await q2).rows[0],
+                r3: (await q3).rows[0],
+                r4: (await q4).rows[0]
             }
         });
     }
@@ -166,7 +169,7 @@ app.post("/venue", async (req,res)=>{
     console.log(req.body);
 
     try{
-        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values ($1, $2, 'NEW_CITY', 'NEW_COUNTRY', 50) returning *",[req.body.name, req.body.location]);
+        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values ($1, $2, 'NEW_CITY', 'NEW_COUNTRY', 50) returning *;",[req.body.name, req.body.location]);
         console.log(results);
         res.status(200).json({
             status: "success",
