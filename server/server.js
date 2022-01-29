@@ -144,14 +144,14 @@ app.get("/venue/:id", async (req, res) => {
     console.log(req.params);
     
     try {
-        const results = db.query("select * from venue where venue_id = $1;", [req.params.id]);
-        const results2 = db.query("select count(*) as cn from venue;");
-        console.log(results.rows);
+        const q1 = db.query("select * from venue where venue_id = $1;", [req.params.id]);
+        const q2 = db.query("select count(*) as cn from venue;");
+        // console.log(results.rows);
         res.status(200).json({
             status: "success",
             data: {
-                venue: (await results).rows[0],
-                res2: (await results2).rows[0]
+                r1: (await q1).rows[0],
+                r2: (await q2).rows[0]
             }
         });
     }

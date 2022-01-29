@@ -9,7 +9,12 @@ export const ContextProvider = (props) => {
   const [selectedVenue, setSelectedVenue] = useState([]);
   const [selectedVariable, setVariable] = useState([]);
   const [pointTable, setPointTable] = useState([]);
-
+  const [V1, SV1] = useState([]);
+  const [V2, SV2] = useState([]);
+  const [V3, SV3] = useState([]);
+  const [V4, SV4] = useState([]);
+  const [V5, SV5] = useState([]);
+  const [V6, SV6] = useState([]);
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
     setMatches([...matches, match]);
@@ -32,7 +37,8 @@ export const ContextProvider = (props) => {
         selectedVariable,
         setVariable,
         venues, 
-        setVenues, 
+        setVenues,
+        V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, 
         addVenues,
         matchInfo, setMatchInfo
       }}
