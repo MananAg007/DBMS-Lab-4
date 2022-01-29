@@ -47,6 +47,26 @@ app.get("/matches/:id", async (req, res)=>{
 
 
 });
+
+//@T- pointstable, SECTION-D
+// app.get("/pointstable/:year", async (req, res)=>{
+//     console.log(req.params);
+    
+//     try {
+//         const results = await db.query("select * from match where match_id = $1", [req.params.id]);
+//         res.status(200).json({
+//             status: "success",
+//             data: {
+//                 matchInfo: results.rows[0]
+//             }
+//         });
+//     }
+//     catch (err){
+//         console.log(err);
+//     }
+
+
+// });
 // Get all restaurants
 app.get("/api/v1/restaurants", async (req, res)=>{
 

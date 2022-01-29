@@ -32,7 +32,7 @@ const ScoreCard = (props) => {
       <h3> BOWLING</h3>
       <h3> BATTING</h3>
       <h3> MATCH INFO</h3>
-      <table class="table table-sm">
+      <table className="table table-sm">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -56,7 +56,7 @@ const ScoreCard = (props) => {
     </tr>
     <tr>
       <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
+      <td colSpan="2">Larry the Bird</td>
       <td>@twitter</td>
     </tr>
   </tbody>
