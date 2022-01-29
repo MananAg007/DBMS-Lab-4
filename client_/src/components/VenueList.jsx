@@ -9,7 +9,8 @@ const VenueList = (props) => {
         const fetchData = async () => {
             try {
                 const response = await  VenueFinder.get("/");
-                setVenues(response.data.data.venues);
+                // console.log(response.data);
+                setVenues(response.data.data.venue);
             } catch (err) {}
         }
 
