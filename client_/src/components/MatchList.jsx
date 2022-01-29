@@ -9,7 +9,8 @@ const MatchList = (props) => {
         const fetchData = async () => {
             try {
                 const response = await  MatchFinder.get("/");
-                setMatches(response.data.data.matches);
+                console.log(response);
+                setMatches(response.data.data.matchList);
             } catch (err) {}
         }
 
@@ -30,11 +31,11 @@ const MatchList = (props) => {
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">A</th>
-                <th scope = "col">B</th>
-                <th scope = "col">C</th>
-                <th scope = "col">D</th>
-                <th scope = "col">E</th>
+                <th scope = "col">Team-1</th>
+                <th scope = "col">Team-2</th>
+                <th scope = "col">Stadium Name</th>
+                <th scope = "col">City Name</th>
+                <th scope = "col">Result</th>
                 <th scope = "col">F</th>
             </tr>
           </thead>
@@ -42,8 +43,8 @@ const MatchList = (props) => {
               {matches && matches.map(match=> {
                   return (
                     <tr key={match.match_id}>
-                    <td> HI</td>
-                    <td> HI</td>
+                    <td> {match.team1}</td>
+                    <td> {match.team2}</td>
                     <td> HI</td>
                     <td> HI</td>
                     <td> <button className="btn btn-warning">Update</button></td>
@@ -53,14 +54,14 @@ const MatchList = (props) => {
                   )
                   
               })}
-              {/* <tr>
+              <tr>
                   <td> HI</td>
                   <td> HI</td>
                   <td> HI</td>
                   <td> HI</td>
                   <td> <button className="btn btn-warning">Update</button></td>
                   <td> <button className="btn btn-danger">Delete</button></td>
-              </tr> */}
+              </tr>
           </tbody>
       </table>
   </div>;
