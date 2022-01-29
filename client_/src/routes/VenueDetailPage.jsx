@@ -22,16 +22,26 @@ const VenueDetailPage = () => {
     fetchData();
 },[]) 
 
-  return <div>
-      <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
-      <h3> Venue Name: {V1.venue_name} </h3>
-      <h3> Address  {V1.city_name}, {V1.country_name}</h3>
-      <h3> Capacity: {V1.capacity}</h3>
-      <h3> Total matches played {V2.count}</h3>
-      <h3> Highest total recorded {V3.highest}</h3>
-      <h3> Lowest total recorded {V3.lowest}</h3>
-      <h3> Highest score chased {V4.highest}</h3>
-  </div>;
+return <div className='list-group'>
+  <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
+<table className="table table-hover table-dark">
+    <thead>
+      <tr className='bg-primary'>
+          <th scope = "col">Field</th>
+          <th scope = "col">Information</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr><td>Venue Name</td><td>{V1.venue_name}</td></tr>
+        <tr><td>Address</td><td>{V1.city_name}, {V1.country_name}</td></tr>
+        <tr><td>Capacity</td><td>{V1.capacity}</td></tr>
+        <tr><td>Total Matches Played</td><td>{V2.count}</td></tr>
+        <tr><td>Highest Total Recorded</td><td>{V3.highest}</td></tr>
+        <tr><td>Lowest Total Recorded</td><td>{V3.lowest}</td></tr>
+        <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr>
+    </tbody>
+</table>
+</div>;
 };
 
 export default VenueDetailPage;
