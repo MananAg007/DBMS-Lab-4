@@ -21,16 +21,6 @@ const MatchList = (props) => {
    const handleMatchSelect = (id) => {
     history.push(`/matches/${id}`);
   };
-//    const handleDelete = async (id) => {
-//      try {
-//         const response = await MatchFinder.delete(`/${id}`);
-//         setMatches(matches.filter(match=>{
-//             return match.id !== id
-//         }))
-//      } catch (err) {
-
-//      }
-//    }
   return <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -61,14 +51,6 @@ const MatchList = (props) => {
                   )
                   
               })}
-              <tr>
-                  <td> HI</td>
-                  <td> HI</td>
-                  <td> HI</td>
-                  <td> HI</td>
-                  <td> <button className="btn btn-warning">Update</button></td>
-                  <td> <button className="btn btn-danger">Delete</button></td>
-              </tr>
           </tbody>
       </table>
   </div>;
