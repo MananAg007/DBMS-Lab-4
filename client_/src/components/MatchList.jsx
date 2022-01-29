@@ -39,7 +39,7 @@ const MatchList = (props) => {
                     //   @T - Do we need more key attributes?
                     <tr 
                     onClick={() => handleMatchSelect(match.match_id)} 
-                    key={match.match_id, match.venue_id} >
+                    key={match.match_id} >
                     <td> {match.team_name1}</td>
                     <td> {match.team_name2}</td>
                     <td> {match.venue_name}</td>
