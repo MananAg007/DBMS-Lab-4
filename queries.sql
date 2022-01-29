@@ -15,8 +15,8 @@ select team_id,
 (select count(*) from match where match_winner = team_id) as won, 0 as tied,
  (select count(*) from match where team_id in (team1, team2)) as mat, (select 2*count(*) from match where match_winner = team_id) as pts
  from team),
-NRRVals (tid, val) as ( select tid, sum(val) from N group by tid),
+NRRVals (tid, NRR) as ( select tid, sum(val) from N group by tid),
 AllVals as (select * from NRRVals, CountVals where tid = team_id)
-select * from team, AllVals where team.team_id = tid;
+select *, (mat - won- tied)  as lost from team, AllVals where team.team_id = tid;
 
    

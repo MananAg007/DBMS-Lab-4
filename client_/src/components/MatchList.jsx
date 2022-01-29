@@ -9,7 +9,7 @@ const MatchList = (props) => {
    useEffect( ()=> {
         const fetchData = async () => {
             try {
-                const response = await  MatchFinder.get("/");
+                const response = await  MatchFinder.get("/matches");
                 console.log(response);
                 setMatches(response.data.data.matchList);
             } catch (err) {}
