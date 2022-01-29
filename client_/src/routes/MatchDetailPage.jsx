@@ -16,7 +16,7 @@ const MatchDetailPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await MatchFinder.get(`/${id}`);
+        const response = await MatchFinder.get(`/matches/${id}`);
         console.log(response);
 
         setSelectedMatch(response.data.data);

@@ -7,7 +7,7 @@ const ScoreCard = (props) => {
     useEffect( ()=> {
          const fetchData = async (id) => {
              try {
-                 const response = await  MatchFinder.get(`/${id}`);
+                 const response = await  MatchFinder.get(`/matches/${id}`);
                  console.log(response);
                 //  setMatches(response.data.data.matchList);
              } catch (err) {}
