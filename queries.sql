@@ -20,3 +20,30 @@ AllVals as (select * from NRRVals, CountVals where tid = team_id)
 select *, (mat - won- tied)  as lost from team, AllVals where team.team_id = tid;
 
    
+
+
+B2
+BAtter:
+
+with T1 as
+(select striker, coalesce(sum(runs_scored),0)  as runs from ball_by_ball where match_id =  598008 and innings_no =1 group by striker),
+T2 as 
+(select striker, count(*) as fours from ball_by_ball where match_id =  598008 and innings_no =1 and runs_scored = 4 group by striker),
+T3 as 
+(select striker, count(*) as sixes from ball_by_ball where match_id =  598008 and innings_no =1 and runs_scored = 6 group by striker),
+T4 as 
+(select striker, count(*) as balls_faced from ball_by_ball where match_id =  598008 and innings_no =1  group by striker )
+select T1.striker, runs,coalesce( fours,0), coalesce( sixes,0), balls_faced from T1 full outer join  T2 on T1.striker = T2.striker full outer join  T3 on Coalesce(T1.striker, T2.striker) = T3.striker full outer join  T4 on Coalesce(T1.striker, T2.striker, T3.striker) = T4.striker;
+
+extra_runs:
+select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  598008 and innings_no =1;
+total_runs:
+select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match_id =  598008 and innings_no =1;
+
+
+Bowler:
+with T1 as
+(select bowler, coalesce(sum(runs_scored),0)  as runs_given from ball_by_ball where match_id =  598008 and innings_no =1 group by bowler),
+with T2 as 
+(select bowler, count(*)  as wickets from ball_by_ball where match_id =  598008 and innings_no =1 and out_type is in ?? group by bowler)
+
