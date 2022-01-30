@@ -21,6 +21,16 @@ const MatchList = (props) => {
    const handleMatchSelect = (id) => {
     history.push(`/matches/${id}`);
   };
+//   = async () => {
+//     try {
+//         const response = await  MatchFinder.get("/matches");
+//         console.log(response);
+//         setMatches(response.data.data.matchList);
+//     } catch (err) {}
+// }
+
+// fetchData();
+// },[]) 
   return <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -53,6 +63,8 @@ const MatchList = (props) => {
               })}
           </tbody>
       </table>
+
+      {/* <button class="btn btn-primary" onClick={() => fetchNextList()}>Next</button> */}
   </div>;
 };
 

@@ -60,6 +60,7 @@ app.get("/matches/:id", async (req, res)=>{
        const innings1_extra_runs =  await db.query(`select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`,[req.params.id, 1])
        const innings2_extra_runs =  await db.query(`select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`,[req.params.id, 2])
 
+       const inning1_runsarray = await db.query(`with O as (select over_id,sum(runs_scored) as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by over_id order by over_id ) select over_id, sum(runs) over (order by over_id asc rows between unbounded preceding and current row) from O order by over_id;`,[req.params.id, 1])
         res.status(200).json({
             status: "success",
             data: {
@@ -68,7 +69,8 @@ app.get("/matches/:id", async (req, res)=>{
                 innings2_extra_runs: innings2_extra_runs.rows ,
                 innings1_extra_runs: innings1_extra_runs.rows ,
                 innings1_total_runs: innings1_total_runs.rows ,
-                innings2_total_runs: innings2_total_runs.rows 
+                innings2_total_runs: innings2_total_runs.rows,
+                inning1_runsarray
 
             }
         });
