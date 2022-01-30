@@ -19,8 +19,6 @@ const PlayerDetailPage = () => {
             SV4(response.data.data.r4);
             SV5(response.data.data.r5);
             SV6(response.data.data.r6);
-            // SV7(response.data.data.r7);
-            // SV8(response.data.data.r8);
         } catch (err) {}
     }
 
