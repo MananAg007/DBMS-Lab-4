@@ -18,6 +18,7 @@ export const ContextProvider = (props) => {
   
   const [V5, SV5] = useState([]);
   const [V6, SV6] = useState([]);
+  const [V7, SV7] = useState([]);
   const [comp, setcomp] = useState([]);
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
@@ -43,7 +44,7 @@ export const ContextProvider = (props) => {
         venues, 
         comp, setcomp,
         setVenues,
-        V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, 
+        V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, V6,V7,SV6,SV7,
         addVenues,
         i2bat, seti2bat,
         i1bat, seti1bat,
