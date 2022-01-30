@@ -70,10 +70,10 @@ const MatchDetailPage = () => {
 <tbody>
   {i1bat && i1bat.map (player =>{
     return (
-<tr onClick={() => handlePlayerSelect(player.striker)}
+<tr 
  key={player.striker}
  >
-<td>{player.striker}</td>
+<td onClick={() => handlePlayerSelect(player.striker)}>{player.striker}</td>
 <td>{player.runs}</td>
 <td>{player.fours}</td>
 <td>{player.sixs}</td>

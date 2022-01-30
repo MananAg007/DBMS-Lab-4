@@ -40,7 +40,7 @@ const MatchList = (props) => {
                 <th scope = "col">Stadium Name</th>
                 <th scope = "col">City Name</th>
                 <th scope = "col">Result</th>
-                <th scope = "col">F</th>
+                {/* <th scope = "col">F</th> */}
             </tr>
           </thead>
           <tbody>
@@ -54,8 +54,8 @@ const MatchList = (props) => {
                     <td> {match.team_name2}</td>
                     <td> {match.venue_name}</td>
                     <td> {match.city_name}</td>
-                    <td> <button className="btn btn-warning">Update</button></td>
-                    <td> <button className="btn btn-danger">Delete</button></td>
+                    <td>    {match.winner} won by {match.win_margin} {match.win_type}</td>
+                    {/* <td> <button className="btn btn-danger">Delete</button></td> */}
                
                    </tr>
                   )
