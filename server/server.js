@@ -240,6 +240,7 @@ app.get("/players/:id", async (req, res) => {
         const q4 = db.query("With res as (select match_id, sum(runs_scored), count(*) as balls , count(out_type) as outs from ball_by_ball where striker = $1 group by match_id) select max(sum), count(case when sum >= 50 then 1 end), ROUND(100.0 * sum(sum) / sum(balls) * 1.0, 2) as strike_rate, ROUND(1.0 * sum(sum) / (case when sum(outs) > 0 then sum(outs) else 1 end) * 1.0, 2) as average from res;", [req.params.id])
         const q5 = db.query("with res as (select count(distinct match_id), count(out_type) as outs, count(*) as balls, sum(runs_scored + extra_runs), (count(case when ball_id<=6 then 1 end)-1)/6+1  as overs  from ball_by_ball where ($1 = bowler)) select count, outs, balls, sum, overs, ROUND((1.0*sum)/overs,2) as avg from res;", [req.params.id]);
         const q6 = db.query("with res as (select count(out_type), match_id from ball_by_ball where ($1 = bowler) group by match_id) select count(*) from res where count>= 5;", [req.params.id]);
+        const q7 = db.query("select sum(runs_scored), match_id from ball_by_ball where striker = $1 group by match_id;", [req.params.id]);
         console.log(q1)
         res.status(200).json({
             status: "success",
@@ -249,7 +250,8 @@ app.get("/players/:id", async (req, res) => {
                 r3: (await q3).rows[0],
                 r4: (await q4).rows[0],
                 r5: (await q5).rows[0],
-                r6: (await q6).rows[0]
+                r6: (await q6).rows[0],
+                r7: (await q7).rows
             }
         });
     }

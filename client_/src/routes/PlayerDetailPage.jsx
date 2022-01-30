@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import PlayerFinder from '../apis/PlayerFinder';
 import { Context } from '../context/Context';
 import Chart from 'chart.js/auto';
+import {Bar, Doughnut} from 'react-chartjs-2';
 
 const PlayerDetailPage = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const PlayerDetailPage = () => {
             SV4(response.data.data.r4);
             SV5(response.data.data.r5);
             SV6(response.data.data.r6);
+            SV7(response.data.data.r7);
         } catch (err) {}
     }
 
@@ -61,6 +63,31 @@ return (<div className='list-group'>
         <tr><td>Average</td><td>{V4.average}</td></tr>
     </tbody>
 </table>
+<Bar
+          data={{
+            labels: V7.map((crypto) => crypto.match_id),
+            datasets: [
+              {
+                label: 'Runs scored',
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: V7.map((cr) => cr.sum)
+              }
+            ]
+          }}
+          options={{
+            title:{
+              display:true,
+              text:'Runs scored',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
 <h1 className='font-weight-light display-1 text-center'>Bowling Statistics </h1>
 <table className="table table-hover table-dark">
     <thead>
