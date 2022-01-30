@@ -3,7 +3,7 @@
 // import ScoreCard from '../components/ScoreCard';
 // import ScoreComparison from '../components/ScoreComparison';
 import React, { useContext, useEffect, Component } from "react";
-import {Line} from 'react-chartjs-2';
+import {Line,Doughnut} from 'react-chartjs-2';
 // import { render } from 'react-dom';
 import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
@@ -15,7 +15,7 @@ const MatchDetailPage = () => {
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
-  const { i2bat, seti2bat } = useContext(
+  const { i2bat, seti2bat, pie, setpie } = useContext(
     Context
   );
   const { i1bat, seti1bat } = useContext(
@@ -35,6 +35,7 @@ const MatchDetailPage = () => {
         seti1bat(response.data.data.innings1_batting);
         seti2bat(response.data.data.innings2_batting);
         setcomp(response.data.data.innings1_plot);
+        setpie (response.data.data.pieplot);
       } catch (err) {
         console.log(err);
       }
@@ -84,8 +85,8 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
-  <button > Show Comparison</button>
-  <div>
+  <button id = "comparisonToggle" > Show Comparison</button>
+  <div id = "comparison">
   <Line
     data = {
      
@@ -117,6 +118,43 @@ const MatchDetailPage = () => {
     }}
    />
            </div> 
+
+
+
+           <Doughnut
+          data={{
+            labels: [
+                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  'rgb(5, 99, 132)',
+                  'rgb(52, 162, 235)',
+                  'rgb(25, 205, 86)'
+
+                ],
+                hoverOffset: 4,
+                data: [pie.ones,pie.twos, pie.fours, pie.sixes,pie.extra_runs]
+              }
+            ]
+          }}
+  
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:50
+            },
+            legend:{
+              display:true,
+              position:'below'
+            },
+          }}
+        />
           
   {/* <canvas id="myChart" width="400" height="400"></canvas> */}
   {/* <div>

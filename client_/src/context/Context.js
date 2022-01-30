@@ -19,6 +19,7 @@ export const ContextProvider = (props) => {
   const [V5, SV5] = useState([]);
   const [V6, SV6] = useState([]);
   const [V7, SV7] = useState([]);
+  const [pie, setpie] = useState([]);
   const [comp, setcomp] = useState([]);
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
@@ -32,6 +33,7 @@ export const ContextProvider = (props) => {
       value={{
         matches,
         setMatches,
+        pie, setpie,
         addMatches,
         pointTable, 
         setPointTable,

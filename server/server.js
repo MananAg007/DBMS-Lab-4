@@ -97,7 +97,7 @@ app.get("/matches/:id", async (req, res)=>{
                 innings1_total_runs: innings1_total_runs.rows ,
                 innings2_total_runs: innings2_total_runs.rows,
                 innings1_plot:innings1_runsarray.rows,
-                pieplot: pieplot.rows
+                pieplot: pieplot.rows[0]
 
             }
         });
