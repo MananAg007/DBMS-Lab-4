@@ -37,7 +37,45 @@ return (<div className='list-group'>
         <tr><td>Bowling Skill</td><td>{V1.bowling_skill}</td></tr>
     </tbody>
 </table>
+<h1 className='font-weight-light display-1 text-center'>Batting Statistics </h1>
+<table className="table table-hover table-dark">
+    <thead>
+      <tr className='bg-primary'>
+          <th scope = "col">Field</th>
+          <th scope = "col">Information</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr><td>Matches</td><td>{V1.player_name}</td></tr>
+        <tr><td>Runs</td><td>{V1.country_name}</td></tr>
+        <tr><td>Four</td><td>{V1.batting_hand}</td></tr>
+        <tr><td>Six</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Fifty</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>HS</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Strike Rate</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Average</td><td>{V1.bowling_skill}</td></tr>
+    </tbody>
+</table>
+<h1 className='font-weight-light display-1 text-center'>Bowling Statistics </h1>
+<table className="table table-hover table-dark">
+    <thead>
+      <tr className='bg-primary'>
+          <th scope = "col">Field</th>
+          <th scope = "col">Information</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr><td>Matches</td><td>{V1.player_name}</td></tr>
+        <tr><td>Runs</td><td>{V1.country_name}</td></tr>
+        <tr><td>Balls</td><td>{V1.batting_hand}</td></tr>
+        <tr><td>Overs</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Wickets</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Economy</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Five Wickets</td><td>{V1.bowling_skill}</td></tr>
+    </tbody>
+</table>
 </div>
+
 );
 
 };
