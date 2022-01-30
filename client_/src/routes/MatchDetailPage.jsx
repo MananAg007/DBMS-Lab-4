@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
 // import ScoreCard from "../components/ScoreCard";
 import { Context } from '../context/Context';
+import { useHistory } from "react-router-dom";
 const MatchDetailPage = () => {
   const { id } = useParams();
   // const { selectedMatch, setSelectedMatch } = useContext(
@@ -18,6 +19,7 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat } = useContext(
     Context
   );
+  let history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +37,9 @@ const MatchDetailPage = () => {
     fetchData();
   }, []);
   
+  const handlePlayerSelect = (id) => {
+    history.push(`/players/${id}`);
+  };
   return <div>
       <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
       <h3>Inning 1 : (Team Name) </h3>
@@ -56,7 +61,9 @@ const MatchDetailPage = () => {
 <tbody>
   {i1bat && i1bat.map (player =>{
     return (
-<tr key={player.striker}>
+<tr onClick={() => handlePlayerSelect(player.striker)}
+ key={player.striker}
+ >
 <td>{player.striker}</td>
 <td>{player.runs}</td>
 <td>{player.fours}</td>
