@@ -17,8 +17,8 @@ const PlayerDetailPage = () => {
             SV2(response.data.data.r2);
             SV3(response.data.data.r3);
             SV4(response.data.data.r4);
-            // SV5(response.data.data.r5);
-            // SV6(response.data.data.r6);
+            SV5(response.data.data.r5);
+            SV6(response.data.data.r6);
             // SV7(response.data.data.r7);
             // SV8(response.data.data.r8);
         } catch (err) {}
@@ -72,13 +72,13 @@ return (<div className='list-group'>
       </tr>
     </thead>
     <tbody>
-        <tr><td>Matches</td><td>{V1.player_name}</td></tr>
-        <tr><td>Runs</td><td>{V1.country_name}</td></tr>
-        <tr><td>Balls</td><td>{V1.batting_hand}</td></tr>
-        <tr><td>Overs</td><td>{V1.bowling_skill}</td></tr>
-        <tr><td>Wickets</td><td>{V1.bowling_skill}</td></tr>
-        <tr><td>Economy</td><td>{V1.bowling_skill}</td></tr>
-        <tr><td>Five Wickets</td><td>{V1.bowling_skill}</td></tr>
+        <tr><td>Matches</td><td>{V5.count}</td></tr>
+        <tr><td>Runs</td><td>{V5.sum}</td></tr>
+        <tr><td>Balls</td><td>{V5.balls}</td></tr>
+        <tr><td>Overs</td><td>{V5.overs}</td></tr>
+        <tr><td>Wickets</td><td>{V5.outs}</td></tr>
+        <tr><td>Economy</td><td>{V5.avg}</td></tr>
+        <tr><td>Five Wickets</td><td>{V6.count}</td></tr>
     </tbody>
 </table>
 </div>
