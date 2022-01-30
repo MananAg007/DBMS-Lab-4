@@ -15,7 +15,7 @@ const MatchDetailPage = () => {
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
-  const { i2bat, seti2bat, pie, setpie, ER1, SER1, SER2, ER2 } = useContext(
+  const { i2bat, seti2bat, pie, setpie, ER1, SER1, SER2, ER2, TR1, TR2, STR1, STR2 } = useContext(
     Context
   );
   const { i1bat, seti1bat } = useContext(
@@ -39,6 +39,7 @@ const MatchDetailPage = () => {
         STN(response.data.data.battingOrder);
         SER2(response.data.data.innings2_extra_runs);
         SER1(response.data.data.innings1_extra_runs);
+        STR1(response.data.data.innings1_total_runs);
       } catch (err) {
         console.log(err);
       }
@@ -89,7 +90,7 @@ const MatchDetailPage = () => {
  <div>
  Extras : {ER1.extra_runs }
    </div>
- Total Score :
+ Total Score : {TR1.total_runs}
   </div>
 
 

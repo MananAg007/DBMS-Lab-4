@@ -67,11 +67,9 @@ app.get("/matches/:id", async (req, res)=>{
         const innings1_batting = await db.query(q1, [req.params.id, 1]);
        const innings2_batting = await db.query(q1, [req.params.id, 2]);
 
-
-        const innings1_total_runs = await db.query(`select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match_id =  $1 and innings_no = $2;
-        `,[req.params.id, 1]);
-        const innings2_total_runs = await db.query(`select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match_id =  $1 and innings_no = $2;
-        `,[req.params.id, 2]);
+        const q2 = `select coalesce(sum(runs_scored+ extra_runs),0)  as total_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`
+        const innings1_total_runs = await db.query(q2,[req.params.id, 1]);
+        const innings2_total_runs = await db.query(q2,[req.params.id, 2]);
        const innings1_extra_runs =  await db.query(`select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`,[req.params.id, 1])
        const innings2_extra_runs =  await db.query(`select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`,[req.params.id, 2])
 
@@ -103,8 +101,8 @@ app.get("/matches/:id", async (req, res)=>{
                 innings2_batting: innings2_batting.rows ,
                 innings2_extra_runs: innings2_extra_runs.rows[0] ,
                 innings1_extra_runs: innings1_extra_runs.rows[0] ,
-                innings1_total_runs: innings1_total_runs.rows ,
-                innings2_total_runs: innings2_total_runs.rows,
+                innings1_total_runs: innings1_total_runs.rows [0],
+                innings2_total_runs: innings2_total_runs.rows[0],
                 innings1_plot:innings1_runsarray.rows,
                 pieplot: pieplot.rows[0],
                 battingOrder : battingOrder .rows[0]

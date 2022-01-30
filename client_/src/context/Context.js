@@ -22,6 +22,8 @@ export const ContextProvider = (props) => {
   const [pie, setpie] = useState([]); 
   const [ER1, SER1] = useState([]);
   const [ER2, SER2] = useState([]);
+  const [TR1, STR1] = useState([]);
+  const [TR2, STR2] = useState([]);
   const [comp, setcomp] = useState([]);
   const[ cardtoggle, Scardtoggle] =useState("0");
   const [matchInfo, setMatchInfo] = useState([])
@@ -35,6 +37,7 @@ export const ContextProvider = (props) => {
     <Context.Provider
       value={{
         matches,
+        TR1, TR2, STR1, STR2,
         setMatches,
         TN,STN,
         ER1, SER1, SER2, ER2 ,
