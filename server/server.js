@@ -235,11 +235,25 @@ app.get("/players/:id", async (req, res) => {
     
     try {
         const q1 = db.query("select * from player where player_id = $1;", [req.params.id]);
+        const q2 = db.query("select count(distinct ball_by_ball.match_id) from player_match, ball_by_ball where player_match.player_id = $1 and ball_by_ball.match_id = player_match.match_id and (player_match.player_id = striker or player_match.player_id = non_striker);", [req.params.id]);
+        const q3 = db.query("select sum(runs_scored) as runs, count(case when runs_scored = 4 then 1 end) as fours, count(case when runs_scored = 6 then 1 end) as sixes from ball_by_ball where striker = $1", [req.params.id])
+        const q4 = db.query("With res as (select match_id, sum(runs_scored), count(*) as balls , count(out_type) as outs from ball_by_ball where striker = $1 group by match_id) select max(sum), count(case when sum >= 50 then 1 end), 100.0 * sum(sum) / sum(balls) * 1.0 as strike_rate, 1.0 * sum(sum) / (case when sum(outs) > 0 then sum(outs) else 1 end) * 1.0 as average from res;", [req.params.id])
+        // const q5 = db.query("with res (select match_id, sum(runs_scored))", [req.params.id]);
+        // const q6 = db.query("select count(*) from match where ((toss_name = 'bat' and match_winner <>toss_winner) or (toss_name = 'field' and match_winner = toss_winner)) and venue_id = $1;", [req.params.id]);
+        // const q7 = db.query("select count(*) from match where match_winner = -1 and venue_id = $1;", [req.params.id]);
+        // const q8 = db.query("with res as (select match.match_id, season_year, sum(runs_scored) from ball_by_ball, match where ball_by_ball.match_id = match.match_id and innings_no = 1 and venue_id = $1 group by match.match_id, season_year) select avg(sum), season_year from res group by season_year ;", [req.params.id]);
         console.log(q1)
         res.status(200).json({
             status: "success",
             data: {
                 r1: (await q1).rows[0], 
+                r2: (await q2).rows[0],
+                r3: (await q3).rows[0],
+                r4: (await q4).rows[0],
+                // r5: (await q5).rows[0],
+                // r6: (await q6).rows[0],
+                // r7: (await q7).rows[0],
+                // r8: (await q8).rows
             }
         });
     }
