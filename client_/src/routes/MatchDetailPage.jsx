@@ -9,7 +9,13 @@ import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
 const MatchDetailPage = () => {
   const { id } = useParams();
-  const { selectedMatch, setSelectedMatch } = useContext(
+  // const { selectedMatch, setSelectedMatch } = useContext(
+  //   Context
+  // );
+  const { i2bat, seti2bat } = useContext(
+    Context
+  );
+  const { i1bat, seti1bat } = useContext(
     Context
   );
 
@@ -18,7 +24,9 @@ const MatchDetailPage = () => {
       try {
         const response = await MatchFinder.get(`/matches/${id}`);
         console.log(response.data.data.innings1_batting);
-        setSelectedMatch(response.data.data);
+        // setSelectedMatch(response.data.data.innings1_batting);
+        seti1bat(response.data.data.innings1_batting);
+        seti2bat(response.data.data.innings2_batting);
       } catch (err) {
         console.log(err);
       }
@@ -29,39 +37,9 @@ const MatchDetailPage = () => {
   
   return <div>
       <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
-      <h3>Inning 1 : </h3>
-      <h3> BOWLING</h3>
-      <h3> BATTING</h3>
-      <h3> MATCH INFO</h3>
-      <table className="table table-sm">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colSpan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+      <h3>Inning 1 : (Team Name) </h3>
+      <h3>Batting</h3>
+   
 
 <div className='list-group'>
       <table className="table table-hover table-dark">
@@ -75,25 +53,23 @@ const MatchDetailPage = () => {
                 {/* <th scope = "col">F</th> */}
             </tr>
           </thead>
-   
 <tbody>
-{/* {selectedMatch.innings1_batting && selectedMatch.innings1_batting .map(match=> {
-    return ( <tr  key={1} >
+  {i1bat && i1bat.map (player =>{
+    return (
+<tr key={player.striker}>
+<td>{player.striker}</td>
+<td>{player.runs}</td>
+<td>{player.fours}</td>
+<td>{player.sixs}</td>
+<td>{player.balls_faced}</td>
+</tr>
 
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    
-     </tr>
-    );
-    
-})} */}
-
+    )
+  })}
 </tbody>      
       </table>
   </div>
+
 
   </div>
 };

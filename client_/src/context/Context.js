@@ -8,6 +8,8 @@ export const ContextProvider = (props) => {
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [selectedVenue, setSelectedVenue] = useState([]);
   const [selectedVariable, setVariable] = useState([]);
+  const [i2bat, seti2bat] = useState([]);
+  const [i1bat, seti1bat] = useState([]);
   const [pointTable, setPointTable] = useState([]);
   const [V1, SV1] = useState([]);
   const [V2, SV2] = useState([]);
@@ -40,6 +42,8 @@ export const ContextProvider = (props) => {
         setVenues,
         V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, 
         addVenues,
+        i2bat, seti2bat,
+        i1bat, seti1bat,
         matchInfo, setMatchInfo
       }}
     >
