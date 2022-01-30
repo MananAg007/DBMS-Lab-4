@@ -2,10 +2,28 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
+import Chart from 'chart.js/auto';
 
 const VenueDetailPage = () => {
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4} = useContext(Context)
+
+  // const CHART = document.getElementById("lineChart");
+  // Chart.defaults.scale.ticks.beginAtZero = true;
+
+  // let barChart = new Chart(CHART, {
+  //   type: 'pie',
+  //   data: {
+  //     labels: ['Strength', 'Skill'],
+  //     datasets: [
+  //       {
+  //         labels: 'Points',
+  //         backgroundColor: ['#f1c40f','#e67e22'],
+  //         data: [10,20]
+  //       }
+  //     ]
+  //   }
+  // });
 
   useEffect( ()=> {
     const fetchData = async () => {
@@ -22,7 +40,8 @@ const VenueDetailPage = () => {
     fetchData();
 },[]) 
 
-return <div className='list-group'>
+return (<div className='list-group'>
+{/* <canvas id="lineChart" height="400" width="400"></canvas> */}
   <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
 <table className="table table-hover table-dark">
     <thead>
@@ -41,7 +60,9 @@ return <div className='list-group'>
         <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr>
     </tbody>
 </table>
-</div>;
+</div>
+);
+
 };
 
 export default VenueDetailPage;

@@ -26,7 +26,7 @@ const AddVenue = () => {
       }
   }
   return <div className='mb-4'>
-      <h1 className='font-weight-light display-1 text-center'>Form </h1>
+      <h1 className='font-weight-heavy display-1 text-center'>Form </h1>
       <form action="">
           <div className="form-row">
             <div className="col">
@@ -41,7 +41,9 @@ const AddVenue = () => {
             <div className="col">
                 <input value = {cp} onChange={(e) => setCapacity(e.target.value)} type="number" className='form-control' placeholder='Capacity'/>
             </div>
-            <button onClick={handleSubmit} type = "submit" className='btn btn-primary'>Submit</button>
+            <br></br>
+            <center><button onClick={handleSubmit} type = "submit" className='btn btn-primary'>Submit</button></center>
+            
           </div>
       </form>
   </div>;

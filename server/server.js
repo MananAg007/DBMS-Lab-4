@@ -183,6 +183,27 @@ app.post("/venue", async (req,res)=>{
     
 });
 
+// Get individual venues
+app.get("/players/:id", async (req, res) => {
+    console.log(req.params);
+    
+    try {
+        const q1 = db.query("select * from player where player_id = $1;", [req.params.id]);
+        console.log(q1)
+        res.status(200).json({
+            status: "success",
+            data: {
+                r1: (await q1).rows[0], 
+            }
+        });
+    }
+    catch (err){
+        console.log(err);
+    }
+    
+});
+
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`server is up and listening on port ${port}`);
