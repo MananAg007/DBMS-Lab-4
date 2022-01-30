@@ -21,6 +21,7 @@ export const ContextProvider = (props) => {
   const [V7, SV7] = useState([]);
   const [pie, setpie] = useState([]);
   const [comp, setcomp] = useState([]);
+  const[ cardtoggle, Scardtoggle] =useState("0");
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
     setMatches([...matches, match]);
@@ -38,6 +39,7 @@ export const ContextProvider = (props) => {
         pointTable, 
         setPointTable,
         selectedMatch,
+        cardtoggle, Scardtoggle,
         setSelectedMatch,
         selectedVenue,
         setSelectedVenue,

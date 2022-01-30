@@ -21,7 +21,7 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat } = useContext(
     Context
   );
-  const {comp, setcomp}=  useContext(
+  const {comp, setcomp, cardtoggle, Scardtoggle}=  useContext(
     Context
   );
   let history = useHistory();
@@ -85,39 +85,44 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
-  <button id = "comparisonToggle" > Show Comparison</button>
-  <div id = "comparison">
-  <Line
-    data = {
-     
-     {
-               labels: comp.map((crypto) => crypto.over_id),
-               datasets : [{
-                
-                 fill: false,
-                 lineTension: 0.5,
-                 backgroundColor: 'rgba(75,192,192,1)',
-                 borderColor: 'rgba(0,0,0,1)',
-                 borderWidth: 2,
-               label: "BAtting team 1",
-               data: comp.map ((cr) => cr.sum)
-               }]
+  <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} > Show Comparison</button>
+  
+  {cardtoggle === "1"? (
+    <div id = "comparison">
+    <Line
+      data = {
+       
+       {
+                 labels: comp.map((crypto) => crypto.over_id),
+                 datasets : [{
+                  
+                   fill: false,
+                   lineTension: 0.5,
+                   backgroundColor: 'rgba(75,192,192,1)',
+                   borderColor: 'rgba(0,0,0,1)',
+                   borderWidth: 2,
+                 label: "BAtting team 1",
+                 data: comp.map ((cr) => cr.sum)
+                 }]
+                 
+                 } 
+      }
+      options={{
+        title:{
+          display:true,
+          text:'Average Rainfall per month',
+          fontSize:50
+        },
+        legend:{
+          display:true,
+          position:'below'
+        },
+      }}
+     />
+             </div> 
                
-               } 
-    }
-    options={{
-      title:{
-        display:true,
-        text:'Average Rainfall per month',
-        fontSize:50
-      },
-      legend:{
-        display:true,
-        position:'below'
-      },
-    }}
-   />
-           </div> 
+                ) : null}
+  
 
 
 
