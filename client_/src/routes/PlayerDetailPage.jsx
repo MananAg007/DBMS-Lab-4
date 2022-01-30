@@ -21,6 +21,7 @@ const PlayerDetailPage = () => {
             SV5(response.data.data.r5);
             SV6(response.data.data.r6);
             SV7(response.data.data.r7);
+            SV8(response.data.data.r8);
         } catch (err) {}
     }
 
@@ -106,6 +107,31 @@ return (<div className='list-group'>
         <tr><td>Five Wickets</td><td>{V6.count}</td></tr>
     </tbody>
 </table>
+<Bar
+          data={{
+            labels: V8.map((crypto) => crypto.match_id),
+            datasets: [
+              {
+                label: 'Runs Conceded',
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: V8.map((cr) => cr.sum)
+              }
+            ]
+          }}
+          options={{
+            title:{
+              display:true,
+              text:'Runs Conceded',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
 </div>
 
 );
