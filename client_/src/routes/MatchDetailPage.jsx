@@ -2,7 +2,7 @@
 // import MatchSummary from '../components/MatchSummary';
 // import ScoreCard from '../components/ScoreCard';
 // import ScoreComparison from '../components/ScoreComparison';
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, Component } from "react";
 import {Line} from 'react-chartjs-2';
 // import { render } from 'react-dom';
 import { useParams } from "react-router-dom";
@@ -21,7 +21,9 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat } = useContext(
     Context
   );
-  const {comp, setcomp}= useContext(Context);
+  const {comp, setcomp}=  useContext(
+    Context
+  );
   let history = useHistory();
 
   useEffect(() => {
@@ -104,8 +106,8 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
-  <button> Show Comparison</button>
-
+  <button > Show Comparison</button>
+  <canvas id="myChart" width="400" height="400"></canvas>
   {/* <div>
         <Line
           data={comp}
