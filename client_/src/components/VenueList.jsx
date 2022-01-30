@@ -20,7 +20,7 @@ const VenueList = (props) => {
    },[]) 
    
    const handleVenueSelect = (id) => {
-    history.push(`/venue/${id}`);
+    history.push(`/venues/${id}`);
   };
   return <div className='list-group'>
       <table className="table table-hover table-dark">

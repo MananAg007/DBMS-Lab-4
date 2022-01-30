@@ -120,7 +120,7 @@ app.get("/pointstable/:year", async (req, res)=>{
 });
 
 // Get all venues
-app.get("/venue", async (req, res)=>{
+app.get("/venues", async (req, res)=>{
 
     try{
         const results = await db.query("select * from venue;");
@@ -140,7 +140,7 @@ app.get("/venue", async (req, res)=>{
 
 
 // Get individual venues
-app.get("/venue/:id", async (req, res) => {
+app.get("/venues/:id", async (req, res) => {
     console.log(req.params);
     
     try {
@@ -165,11 +165,11 @@ app.get("/venue/:id", async (req, res) => {
 });
 
 
-app.post("/venue", async (req,res)=>{
+app.post("/venues", async (req,res)=>{
     console.log(req.body);
 
     try{
-        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values (999, $1, $2, $3, $4) returning *;",[req.body.name, req.body.location, req.body.city, req.body.capacity]);
+        const results = await db.query("INSERT INTO venue (venue_id, venue_name, city_name, country_name, capacity) values (9991, $1, $2, $3, $4) returning *;",[req.body.name, req.body.location, req.body.city, req.body.capacity]);
         console.log(results);
         res.status(200).json({
             status: "success",
