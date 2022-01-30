@@ -70,7 +70,7 @@ app.get("/matches/:id", async (req, res)=>{
                 innings1_extra_runs: innings1_extra_runs.rows ,
                 innings1_total_runs: innings1_total_runs.rows ,
                 innings2_total_runs: innings2_total_runs.rows,
-                inning1_runsarray
+                inning1_runsarray:inning1_runsarray.rows
 
             }
         });
