@@ -174,7 +174,7 @@ const MatchDetailPage = () => {
                    backgroundColor: 'rgba(75,192,192,1)',
                    borderColor: 'rgba(0,0,0,1)',
                    borderWidth: 2,
-                 label: "BAtting team 1",
+                 label: "Batting team 1",
                  data: comp.map ((cr) => cr.sum)
                  }]
                  

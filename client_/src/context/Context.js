@@ -19,6 +19,7 @@ export const ContextProvider = (props) => {
   const [V5, SV5] = useState([]);
   const [V6, SV6] = useState([]);
   const [V7, SV7] = useState([]);
+  const [V8, SV8] = useState([]);
   const [pie, setpie] = useState([]); 
   const [ER1, SER1] = useState([]);
   const [ER2, SER2] = useState([]);
@@ -55,7 +56,7 @@ export const ContextProvider = (props) => {
         venues, 
         comp, setcomp,
         setVenues,
-        V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, V6,V7,SV6,SV7,
+        V1,V2,V3,V4,V5,SV1,SV2,SV3,SV4,SV5, V6,V7,SV6,SV7,V8,SV8,
         addVenues,
         i2bat, seti2bat,
         i1bat, seti1bat,
