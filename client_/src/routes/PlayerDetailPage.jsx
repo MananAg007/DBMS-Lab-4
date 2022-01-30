@@ -112,12 +112,21 @@ return (<div className='list-group'>
             labels: V8.map((crypto) => crypto.match_id),
             datasets: [
               {
+                  type: 'bar',
                 label: 'Runs Conceded',
                 backgroundColor: 'rgba(75,192,192,1)',
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 2,
                 data: V8.map((cr) => cr.sum)
-              }
+              },
+              {
+                type: 'line',
+              label: 'Runs Conceded',
+              backgroundColor: 'rgba(75,192,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: V8.map((cr) => cr.count)
+            }
             ]
           }}
           options={{

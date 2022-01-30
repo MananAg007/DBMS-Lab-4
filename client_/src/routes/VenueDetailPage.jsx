@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
+import Chart from 'chart.js/auto';
 import {Line, Doughnut} from 'react-chartjs-2';
 
 const VenueDetailPage = () => {
