@@ -34,29 +34,7 @@ const MatchDetailPage = () => {
         // setSelectedMatch(response.data.data.innings1_batting);
         seti1bat(response.data.data.innings1_batting);
         seti2bat(response.data.data.innings2_batting);
-        setcomp(
-          {
-            labels: response.data.data.innings1_plot.map((crypto) => crypto.over_id),
-            datasets : [{
-             
-              fill: false,
-              lineTension: 0.5,
-              backgroundColor: 'rgba(75,192,192,1)',
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 2,
-            label: "BAtting team 1",
-            data: response.data.data.innings1_plot.map ((cr) => cr.sum),
-            // backgroundColor: [
-            //   "#ffbb11",
-            //   "#ecf0f1",
-            //   "#50AF95",
-            //   "#f3ba2f",
-            //   "#2a71d0"
-            // ]
-            }
-            ]
-          }
-        );
+        setcomp(response.data.data.innings1_plot);
       } catch (err) {
         console.log(err);
       }
@@ -107,7 +85,40 @@ const MatchDetailPage = () => {
       </table>
   </div>
   <button > Show Comparison</button>
-  <canvas id="myChart" width="400" height="400"></canvas>
+  <div>
+  <Line
+    data = {
+     
+     {
+               labels: comp.map((crypto) => crypto.over_id),
+               datasets : [{
+                
+                 fill: false,
+                 lineTension: 0.5,
+                 backgroundColor: 'rgba(75,192,192,1)',
+                 borderColor: 'rgba(0,0,0,1)',
+                 borderWidth: 2,
+               label: "BAtting team 1",
+               data: comp.map ((cr) => cr.sum)
+               }]
+               
+               } 
+    }
+    options={{
+      title:{
+        display:true,
+        text:'Average Rainfall per month',
+        fontSize:50
+      },
+      legend:{
+        display:true,
+        position:'below'
+      },
+    }}
+   />
+           </div> 
+          
+  {/* <canvas id="myChart" width="400" height="400"></canvas> */}
   {/* <div>
         <Line
           data={comp}
