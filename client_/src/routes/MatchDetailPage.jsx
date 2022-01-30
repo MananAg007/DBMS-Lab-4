@@ -3,6 +3,8 @@
 // import ScoreCard from '../components/ScoreCard';
 // import ScoreComparison from '../components/ScoreComparison';
 import React, { useContext, useEffect } from "react";
+import {Line} from 'react-chartjs-2';
+// import { render } from 'react-dom';
 import { useParams } from "react-router-dom";
 import MatchFinder from '../apis/MatchFinder';
 // import ScoreCard from "../components/ScoreCard";
@@ -34,15 +36,21 @@ const MatchDetailPage = () => {
           {
             labels: response.data.data.innings1_plot.map((crypto) => crypto.over_id),
             datasets : [{
+             
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: 'rgba(75,192,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
             label: "BAtting team 1",
             data: response.data.data.innings1_plot.map ((cr) => cr.sum),
-            backgroundColor: [
-              "#ffbb11",
-              "#ecf0f1",
-              "#50AF95",
-              "#f3ba2f",
-              "#2a71d0"
-            ]
+            // backgroundColor: [
+            //   "#ffbb11",
+            //   "#ecf0f1",
+            //   "#50AF95",
+            //   "#f3ba2f",
+            //   "#2a71d0"
+            // ]
             }
             ]
           }
@@ -58,6 +66,8 @@ const MatchDetailPage = () => {
   const handlePlayerSelect = (id) => {
     history.push(`/players/${id}`);
   };
+
+  
   return <div>
       <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
       <h3>Inning 1 : (Team Name) </h3>
@@ -94,9 +104,27 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
+  <button> Show Comparison</button>
 
+  {/* <div>
+        <Line
+          data={comp}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>  */}
 
-  </div>
+  
+  </div> 
 };
 export default MatchDetailPage;
 

@@ -61,6 +61,14 @@ app.get("/matches/:id", async (req, res)=>{
        const innings2_extra_runs =  await db.query(`select coalesce(sum(extra_runs),0) as extra_runs from ball_by_ball where match_id =  $1 and innings_no = $2;`,[req.params.id, 2])
 
        const innings1_runsarray = await db.query(`with O as (select over_id,sum(runs_scored) as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by over_id order by over_id ) select over_id, sum(runs) over (order by over_id asc rows between unbounded preceding and current row) from O order by over_id;`,[req.params.id, 1])
+
+       const pieplot =  await db.query(`with  B as (select * from ball_by_ball where match_id = $1 )
+       , F as (select count (*)*4 as fours from B where runs_scored = 4),
+        S as (select count (*)*6 as sixes from B where runs_scored = 6),
+       E as (select coalesce(sum(extra_runs),0) as extra_runs from B ),
+       O as (select count (*) as ones from B where runs_scored = 1),
+       T as (select count (*) as twos from B where runs_scored = 2)
+       select * from F,S,E,O,T;`,[req.params.id] )
         res.status(200).json({
             status: "success",
             data: {
@@ -70,7 +78,8 @@ app.get("/matches/:id", async (req, res)=>{
                 innings1_extra_runs: innings1_extra_runs.rows ,
                 innings1_total_runs: innings1_total_runs.rows ,
                 innings2_total_runs: innings2_total_runs.rows,
-                innings1_plot:innings1_runsarray.rows
+                innings1_plot:innings1_runsarray.rows,
+                pieplot: pieplot.rows
 
             }
         });

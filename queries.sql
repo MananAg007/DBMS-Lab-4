@@ -47,3 +47,11 @@ with T1 as
 with T2 as 
 (select bowler, count(*)  as wickets from ball_by_ball where match_id =  598008 and innings_no =1 and out_type is in ?? group by bowler)
 
+
+with  B as (select * from ball_by_ball where match_id = 829720)
+, F as (select count (*)*4 as fours from B where runs_scored = 4),
+ S as (select count (*)*6 as sixes from B where runs_scored = 6),
+E as (select coalesce(sum(extra_runs),0)  from B ),
+O as (select count (*) as ones from B where runs_scored = 1),
+T as (select count (*) as twos from B where runs_scored = 2)
+select * from F,S,E,O,T;
