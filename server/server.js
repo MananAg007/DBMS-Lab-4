@@ -101,8 +101,8 @@ app.get("/matches/:id", async (req, res)=>{
             data: {
                 innings1_batting: innings1_batting.rows ,
                 innings2_batting: innings2_batting.rows ,
-                innings2_extra_runs: innings2_extra_runs.rows ,
-                innings1_extra_runs: innings1_extra_runs.rows ,
+                innings2_extra_runs: innings2_extra_runs.rows[0] ,
+                innings1_extra_runs: innings1_extra_runs.rows[0] ,
                 innings1_total_runs: innings1_total_runs.rows ,
                 innings2_total_runs: innings2_total_runs.rows,
                 innings1_plot:innings1_runsarray.rows,

@@ -15,7 +15,7 @@ const MatchDetailPage = () => {
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
-  const { i2bat, seti2bat, pie, setpie } = useContext(
+  const { i2bat, seti2bat, pie, setpie, ER1, SER1, SER2, ER2 } = useContext(
     Context
   );
   const { i1bat, seti1bat } = useContext(
@@ -37,6 +37,8 @@ const MatchDetailPage = () => {
         setcomp(response.data.data.innings1_plot);
         setpie (response.data.data.pieplot);
         STN(response.data.data.battingOrder);
+        SER2(response.data.data.innings2_extra_runs);
+        SER1(response.data.data.innings1_extra_runs);
       } catch (err) {
         console.log(err);
       }
@@ -84,7 +86,41 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
+ <div>
+ Extras : {ER1.extra_runs }
+   </div>
+ Total Score :
   </div>
+
+
+  <div>
+      <h3>Bowling</h3>
+<div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">  Bowler</th>
+                <th scope = "col">Balls Bowled</th>
+                <th scope = "col">runs_given</th>
+                <th scope = "col">wickets</th>
+            </tr>
+          </thead>
+<tbody>
+  <tr>
+  <td>data</td>
+  <td>data</td>
+  <td>data</td>
+  <td>data</td>
+  </tr>
+ 
+</tbody>      
+      </table>
+  </div>
+  </div>
+
+
+
+
 
   <div>
       <h3>Inning 2 : {TN.bat2} </h3>
