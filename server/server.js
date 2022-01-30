@@ -52,25 +52,22 @@ app.get("/matches/:id", async (req, res)=>{
     console.log(req.params);
     
     try {
-        const results = await db.query("select * from match where match_id = $1", [req.params.id]);
-        const innings1_batting = await db.query(`with T1 as
+
+        // const results = await db.query("select * from match where match_id = $1", [req.params.id]);
+
+        const q1= `with T1 as
         (select striker, coalesce(sum(runs_scored),0)  as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by striker),
         T2 as 
         (select striker, count(*) as fours from ball_by_ball where match_id =  $1 and innings_no = $2 and runs_scored = 4 group by striker),
         T3 as 
         (select striker, count(*) as sixes from ball_by_ball where match_id =  $1 and innings_no = $2 and runs_scored = 6 group by striker),
         T4 as 
-        (select striker, count(*) as balls_faced from ball_by_ball where match_id =  $1 and innings_no = $2  group by striker )
-        select T1.striker, runs,coalesce( fours,0) as fours, coalesce( sixes,0) as sixs, balls_faced from T1 full outer join  T2 on T1.striker = T2.striker full outer join  T3 on Coalesce(T1.striker, T2.striker) = T3.striker full outer join  T4 on Coalesce(T1.striker, T2.striker, T3.striker) = T4.striker;`, [req.params.id, 1]);
-       const innings2_batting = await db.query(`with T1 as
-       (select striker, coalesce(sum(runs_scored),0)  as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by striker),
-       T2 as 
-       (select striker, count(*) as fours from ball_by_ball where match_id =  $1 and innings_no = $2 and runs_scored = 4 group by striker),
-       T3 as 
-       (select striker, count(*) as sixes from ball_by_ball where match_id =  $1 and innings_no = $2 and runs_scored = 6 group by striker),
-       T4 as 
-       (select striker, count(*) as balls_faced from ball_by_ball where match_id =  $1 and innings_no = $2  group by striker )
-       select T1.striker, runs,coalesce( fours,0) as fours, coalesce( sixes,0) as sixs, balls_faced from T1 full outer join  T2 on T1.striker = T2.striker full outer join  T3 on Coalesce(T1.striker, T2.striker) = T3.striker full outer join  T4 on Coalesce(T1.striker, T2.striker, T3.striker) = T4.striker;`, [req.params.id, 2]);
+        (select striker, count(*) as balls_faced from ball_by_ball where match_id =  $1 and innings_no = $2  group by striker ), A as (
+        select T1.striker, runs,coalesce( fours,0) as fours, coalesce( sixes,0) as sixs, balls_faced from T1 full outer join  T2 on T1.striker = T2.striker full outer join  T3 on Coalesce(T1.striker, T2.striker) = T3.striker full outer join  T4 on Coalesce(T1.striker, T2.striker, T3.striker) = T4.striker) select * from A, player where player_id = striker;`
+        const innings1_batting = await db.query(q1, [req.params.id, 1]);
+       const innings2_batting = await db.query(q1, [req.params.id, 2]);
+
+
         const innings1_total_runs = await db.query(`select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match_id =  $1 and innings_no = $2;
         `,[req.params.id, 1]);
         const innings2_total_runs = await db.query(`select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match_id =  $1 and innings_no = $2;
@@ -87,6 +84,18 @@ app.get("/matches/:id", async (req, res)=>{
        O as (select count (*) as ones from B where runs_scored = 1),
        T as (select count (*) as twos from B where runs_scored = 2)
        select * from F,S,E,O,T;`,[req.params.id] )
+
+       const battingOrder = await db.query(`with B as (
+        select team_name as bat1 from match,team where match_id = $1 and ((((toss_winner = team1 and toss_name = 'bat') or (toss_winner = team2 and toss_name = 'field') ) and team_id = team1) or 
+        (((toss_winner = team2 and toss_name = 'bat') or (toss_winner = team1 and toss_name = 'field') ) and team_id = team2)
+        )
+        ),
+        C as (
+        select team_name as bat2 from match,team where match_id = $1 and ((((toss_winner = team1 and toss_name = 'field') or (toss_winner = team2 and toss_name = 'bat') ) and team_id = team1) or 
+        (((toss_winner = team2 and toss_name = 'field') or (toss_winner = team1 and toss_name = 'bat') ) and team_id = team2)
+        )
+        )
+        select * from B, C;`,[req.params.id]);
         res.status(200).json({
             status: "success",
             data: {
@@ -97,7 +106,8 @@ app.get("/matches/:id", async (req, res)=>{
                 innings1_total_runs: innings1_total_runs.rows ,
                 innings2_total_runs: innings2_total_runs.rows,
                 innings1_plot:innings1_runsarray.rows,
-                pieplot: pieplot.rows[0]
+                pieplot: pieplot.rows[0],
+                battingOrder : battingOrder .rows[0]
 
             }
         });

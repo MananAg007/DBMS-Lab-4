@@ -21,7 +21,7 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat } = useContext(
     Context
   );
-  const {comp, setcomp, cardtoggle, Scardtoggle}=  useContext(
+  const {comp, setcomp, cardtoggle, Scardtoggle, TN,  STN}=  useContext(
     Context
   );
   let history = useHistory();
@@ -36,6 +36,7 @@ const MatchDetailPage = () => {
         seti2bat(response.data.data.innings2_batting);
         setcomp(response.data.data.innings1_plot);
         setpie (response.data.data.pieplot);
+        STN(response.data.data.battingOrder);
       } catch (err) {
         console.log(err);
       }
@@ -51,10 +52,9 @@ const MatchDetailPage = () => {
   
   return <div>
       <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
-      <h3>Inning 1 : (Team Name) </h3>
+      <div>
+      <h3>Inning 1 : {TN.bat1} </h3>
       <h3>Batting</h3>
-   
-
 <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -64,7 +64,6 @@ const MatchDetailPage = () => {
                 <th scope = "col">Fours</th>
                 <th scope = "col">Sixes</th>
                 <th scope = "col">Balls Faced</th>
-                {/* <th scope = "col">F</th> */}
             </tr>
           </thead>
 <tbody>
@@ -73,7 +72,7 @@ const MatchDetailPage = () => {
 <tr 
  key={player.striker}
  >
-<td onClick={() => handlePlayerSelect(player.striker)}>{player.striker}</td>
+<td onClick={() => handlePlayerSelect(player.striker)}>{player.player_name}</td>
 <td>{player.runs}</td>
 <td>{player.fours}</td>
 <td>{player.sixs}</td>
@@ -85,6 +84,43 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
+  </div>
+
+  <div>
+      <h3>Inning 2 : {TN.bat2} </h3>
+      <h3>Batting</h3>
+<div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Batter</th>
+                <th scope = "col">Runs</th>
+                <th scope = "col">Fours</th>
+                <th scope = "col">Sixes</th>
+                <th scope = "col">Balls Faced</th>
+            </tr>
+          </thead>
+<tbody>
+  {i2bat && i2bat.map (player =>{
+    return (
+<tr 
+ key={player.striker}
+ >
+<td onClick={() => handlePlayerSelect(player.striker)}>{player.player_name}</td>
+<td>{player.runs}</td>
+<td>{player.fours}</td>
+<td>{player.sixs}</td>
+<td>{player.balls_faced}</td>
+</tr>
+
+    )
+  })}
+</tbody>      
+      </table>
+  </div>
+  </div>
+
+
   <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} > Show Comparison</button>
   
   {cardtoggle === "1"? (

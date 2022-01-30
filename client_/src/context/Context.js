@@ -15,7 +15,7 @@ export const ContextProvider = (props) => {
   const [V2, SV2] = useState([]);
   const [V3, SV3] = useState([]);
   const [V4, SV4] = useState([]);
-  
+  const [TN,STN] = useState([]);
   const [V5, SV5] = useState([]);
   const [V6, SV6] = useState([]);
   const [V7, SV7] = useState([]);
@@ -34,6 +34,7 @@ export const ContextProvider = (props) => {
       value={{
         matches,
         setMatches,
+        TN,STN,
         pie, setpie,
         addMatches,
         pointTable, 

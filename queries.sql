@@ -55,3 +55,15 @@ E as (select coalesce(sum(extra_runs),0)  from B ),
 O as (select count (*) as ones from B where runs_scored = 1),
 T as (select count (*) as twos from B where runs_scored = 2)
 select * from F,S,E,O,T;
+
+with B as (
+ select team_name as bat1 from match,team where match_id = 501203 and ((((toss_winner = team1 and toss_name = 'bat') or (toss_winner = team2 and toss_name = 'field') ) and team_id = team1) or 
+ (((toss_winner = team2 and toss_name = 'bat') or (toss_winner = team1 and toss_name = 'field') ) and team_id = team2)
+ )
+ ),
+ C as (
+ select team_name as bat2 from match,team where match_id = 501203 and ((((toss_winner = team1 and toss_name = 'field') or (toss_winner = team2 and toss_name = 'bat') ) and team_id = team1) or 
+ (((toss_winner = team2 and toss_name = 'field') or (toss_winner = team1 and toss_name = 'bat') ) and team_id = team2)
+ )
+ )
+ select * from B, C;
