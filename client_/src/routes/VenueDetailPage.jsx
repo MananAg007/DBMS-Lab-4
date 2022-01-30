@@ -2,28 +2,36 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
-import Chart from 'chart.js/auto';
+import {Pie, Doughnut} from 'react-chartjs-2';
 
 const VenueDetailPage = () => {
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4} = useContext(Context)
 
-  // const CHART = document.getElementById("lineChart");
-  // Chart.defaults.scale.ticks.beginAtZero = true;
-
-  // let barChart = new Chart(CHART, {
-  //   type: 'pie',
-  //   data: {
-  //     labels: ['Strength', 'Skill'],
-  //     datasets: [
-  //       {
-  //         labels: 'Points',
-  //         backgroundColor: ['#f1c40f','#e67e22'],
-  //         data: [10,20]
-  //       }
-  //     ]
-  //   }
-  // });
+  const state = {
+    labels: ['January', 'February', 'March',
+             'April', 'May'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+          '#6800B4'
+        ],
+        hoverBackgroundColor: [
+        '#501800',
+        '#4B5000',
+        '#175000',
+        '#003350',
+        '#35014F'
+        ],
+        data: [65, 59, 80, 81, 56]
+      }
+    ]
+  }
 
   useEffect( ()=> {
     const fetchData = async () => {
@@ -41,7 +49,20 @@ const VenueDetailPage = () => {
 },[]) 
 
 return (<div className='list-group'>
-{/* <canvas id="lineChart" height="400" width="400"></canvas> */}
+        <Doughnut
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
   <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
 <table className="table table-hover table-dark">
     <thead>
