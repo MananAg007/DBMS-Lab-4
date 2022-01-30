@@ -12,7 +12,25 @@ var offset = 0;
 app.get("/matches", async (req, res)=>{
 
     try{
-        const results = await db.query("select *, (select team_name from team  where team_id = match.team1) as team_name1,(select team_name from team  where team_id = match.team2) as team_name2 from match, venue where venue.venue_id = match.venue_id order by season_year desc, match_id asc, match.venue_id asc  offset $1 limit 10 ", [offset]);
+        console.log(req.params);
+        var skip = req.params.skip;
+        var limit = req.params.limit;
+        if (limit  == null) 
+        {
+            limit =10;
+        }
+        else{
+            limit = parseInt(limit);
+        }
+        if(skip == null){
+            skip = 0;
+        }
+        else{
+            skip = parseInt(skip);
+        }
+
+        const results = await db.query("select *, (select team_name from team  where team_id = match.team1) as team_name1,(select team_name from team  where team_id = match.team2) as team_name2 from match, venue where venue.venue_id = match.venue_id order by season_year desc, match_id asc, match.venue_id asc  offset $1 limit $2 ", [skip, limit]);
+        // const results = await db.query("select *, (select team_name from team  where team_id = match.team1) as team_name1,(select team_name from team  where team_id = match.team2) as team_name2 from match, venue where venue.venue_id = match.venue_id order by season_year desc, match_id asc, match.venue_id asc  offset $1 limit 10 ", [offset]);
         console.log(results);
         res.status(200).json({
             status: "success",
