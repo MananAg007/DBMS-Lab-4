@@ -6,32 +6,7 @@ import {Pie, Doughnut} from 'react-chartjs-2';
 
 const VenueDetailPage = () => {
   const { id } = useParams();
-  const {V1,SV1, V2, SV2, V3, SV3, V4, SV4} = useContext(Context)
-
-  const state = {
-    labels: ['January', 'February', 'March',
-             'April', 'May'],
-    datasets: [
-      {
-        label: 'Rainfall',
-        backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4'
-        ],
-        hoverBackgroundColor: [
-        '#501800',
-        '#4B5000',
-        '#175000',
-        '#003350',
-        '#35014F'
-        ],
-        data: [65, 59, 80, 81, 56]
-      }
-    ]
-  }
+  const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7} = useContext(Context)
 
   useEffect( ()=> {
     const fetchData = async () => {
@@ -42,6 +17,9 @@ const VenueDetailPage = () => {
             SV2(response.data.data.r2);
             SV3(response.data.data.r3);
             SV4(response.data.data.r4);
+            SV5(response.data.data.r5);
+            SV6(response.data.data.r6);
+            SV7(response.data.data.r7);
         } catch (err) {}
     }
 
@@ -49,18 +27,35 @@ const VenueDetailPage = () => {
 },[]) 
 
 return (<div className='list-group'>
+       
         <Doughnut
-          data={state}
+          data={{
+            labels: ['Team Batting First: Won', 'Team Batting Second: Won',
+                     'Draw'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4,
+                data: [V5.count, V6.count, V7.count]
+              }
+            ]
+          }}
+  
           options={{
             title:{
               display:true,
               text:'Average Rainfall per month',
-              fontSize:20
+              fontSize:50
             },
             legend:{
               display:true,
-              position:'right'
-            }
+              position:'below'
+            },
           }}
         />
   <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
