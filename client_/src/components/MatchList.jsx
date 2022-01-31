@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
 import { useHistory } from "react-router-dom";
@@ -6,20 +6,30 @@ const MatchList = (props) => {
     
    const {matches, setMatches} = useContext(Context);
    const {offset, setOffset} = useContext(Context);
+   const [pageCount, setPageCount] = useState(0);
+   const [itemOffset, setItemOffset] = useState(0);
+   const [matchcount, smatchcount] = useState(0);
+
    let history = useHistory();
    useEffect( ()=> {
         const fetchData = async () => {
             try {
-               console.log(offset);
+            
+              //  console.log(offset);
                 const response = await  MatchFinder.get("/matches");
                 console.log(response);
-                setMatches(response.data.data.matchList);
+                const endOffset = itemOffset + 10;
+                // setCurrentItems(items.slice(itemOffset, endOffset));
+              
+                setMatches(response.data.data.matchList.slice(itemOffset, endOffset));
+                smatchcount(response.data.data.matchescount);
+                setPageCount(pageCount+1);
                 setOffset(response.data.data.offset);
             } catch (err) {}
         }
 
         fetchData();
-   },[]) 
+   },[itemOffset, 10]) 
    
    const handleMatchSelect = (id) => {
     history.push(`/matches/${id}`);
@@ -27,11 +37,13 @@ const MatchList = (props) => {
 
 
   const handleNextMatches = () => {
-    console.log(offset);
-    // setOffset(offset+10);
-    // history.push("/matches");
-   
-
+    var newOffset = (pageCount * 10);
+    if (newOffset>= matchcount)
+    {
+      newOffset = newOffset -10;
+    }
+    setItemOffset(newOffset);
+    history.push(`/matches`);
   };
 //   = async () => {
 //     try {

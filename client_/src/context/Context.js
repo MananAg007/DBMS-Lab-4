@@ -30,6 +30,7 @@ export const ContextProvider = (props) => {
   const[VEN, SVEN] = useState([]);
   const[UMP, SUMP] = useState([]);
   const[P1,SP1] = useState([]);
+  
   const[P2,SP2] = useState([]);
   const[ pie2, setpie2]= useState([]);
   const[ names,  SNames] = useState([]);
