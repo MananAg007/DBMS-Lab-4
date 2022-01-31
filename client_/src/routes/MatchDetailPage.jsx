@@ -15,13 +15,13 @@ const MatchDetailPage = () => {
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
-  const { i2bat, seti2bat, pie, setpie, ER1, SER1, SER2, ER2, TR1, TR2, STR1, STR2 } = useContext(
+  const {  TBat1, MW, SMW, TBall1, STBat1, STBall1, TBat2, TBall2, STBat2, STBall2,   i2bat, seti2bat, pie, setpie,pie2, setpie2, ER1, SER1, SER2, ER2, TR1, TR2, STR1, STR2 } = useContext(
     Context
   );
   const { i1bat, seti1bat , TossWinner, STossWinner, INF, VEN, UMP, P1, P2,  SINF, SVEN, SUMP, SP1, SP2, B1, SB1, B2, SB2, TW1, TW2, STW1, STW2} = useContext(
     Context
   );
-  const {comp, setcomp,comp2, setcomp2, names,  SNames, cardtoggle, Scardtoggle, TN,  STN}=  useContext(
+  const {comp, setcomp,comp2, setcomp2, names,  SNames, cardtoggle, Scardtoggle,  Summarytogglefunc, Summarytoggle, TN,  STN}=  useContext(
     Context
   );
   let history = useHistory();
@@ -37,6 +37,7 @@ const MatchDetailPage = () => {
         setcomp(response.data.data.innings1_plot);
         setcomp2(response.data.data.innings2_plot);
         setpie (response.data.data.pieplot);
+        setpie2 (response.data.data.pieplot2);
         STN(response.data.data.battingOrder);
         SNames(response.data.data.Teamnames);
         SER2(response.data.data.innings2_extra_runs);
@@ -49,7 +50,12 @@ const MatchDetailPage = () => {
         STW2 (response.data.data.innings2_total_wickets);
         SINF (response.data.data.info);
         SVEN (response.data.data.venue);
+        STBat1(response.data.data.TopBatters1);
+        STBall1 (response.data.data.TopBowlers1);
+        STBat2(response.data.data.TopBatters2);
+        STBall2 (response.data.data.TopBowlers2);
         SUMP (response.data.data.umpires);
+        SMW(response.data.data.winnername)
         SP1 (response.data.data.player1);
         SP2 (response.data.data.player2);
         STossWinner(response.data.data.TossWinner);
@@ -251,50 +257,7 @@ player.player_name
     </tbody>
  </table>
 
-{/* info : info.rows[0],
-                venue: venue.rows[0],
-                player1: player1.rows,
-                player2: player2.rows,
-                umpires */}
-
-{/* 
-
-  <div>
-      <h3>Inning 2 : {TN.bat2} </h3>
-      <h3>Batting</h3>
-<div className='list-group'>
-      <table className="table table-hover table-dark">
-          <thead>
-            <tr className='bg-primary'>
-                <th scope = "col">Batter</th>
-                <th scope = "col">Runs</th>
-                <th scope = "col">Fours</th>
-                <th scope = "col">Sixes</th>
-                <th scope = "col">Balls Faced</th>
-            </tr>
-          </thead>
-<tbody>
-  {i2bat && i2bat.map (player =>{
-    return (
-<tr 
- key={player.striker}
- >
-<td onClick={() => handlePlayerSelect(player.striker)}>{player.player_name}</td>
-<td>{player.runs}</td>
-<td>{player.fours}</td>
-<td>{player.sixs}</td>
-<td>{player.balls_faced}</td>
-</tr>
-
-    )
-  })}
-</tbody>      
-      </table>
-  </div>
   
-  </div> */}
-
-
   <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} > Show Comparison</button>
   
   {cardtoggle === "1"? (
@@ -365,7 +328,128 @@ player.player_name
   
 
 
+<div>
 
+
+
+  <button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} > Show Summary</button>
+  {Summarytoggle === "1"? (
+<div>
+  <h2>MATCH SUMMARY</h2>
+ <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
+ <div>{names.team_name1} - {TR1.total_runs} / {TW1.total_wickets} </div>
+ <div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Player Name</th>
+                <th scope = "col">Runs Scored</th>
+                <th scope = "col">Balls Played</th>
+            </tr>
+          </thead>
+<tbody>
+  {TBat1 && TBat1.map (player =>{
+    return (
+<tr 
+ key={player.striker}
+ >
+<td onClick={() => handlePlayerSelect(player.striker)}>{player.player_name}</td>
+<td>{player.runs_scored}</td>
+<td>{player.num_balls}</td>
+
+</tr>
+
+    )
+  })}
+</tbody>      
+      </table>
+  </div>
+  <div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Player Name</th>
+                <th scope = "col">Wickets Taken</th>
+                <th scope = "col">Runs Given</th>
+            </tr>
+          </thead>
+<tbody>
+  {TBall1 && TBall1.map (player =>{
+    return (
+<tr 
+ key={player.bowler}
+ >
+<td onClick={() => handlePlayerSelect(player.bowler)}>{player.player_name}</td>
+<td>{player.wickets_taken}</td>
+<td>{player.runs_given}</td>
+
+</tr>
+
+    )
+  })}
+</tbody>      
+      </table>
+  </div>
+
+ <div>{names.team_name2} - {TR2.total_runs} / {TW2.total_wickets} </div>
+ <div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Player Name</th>
+                <th scope = "col">Runs Scored</th>
+                <th scope = "col">Balls Played</th>
+            </tr>
+          </thead>
+<tbody>
+  {TBat2 && TBat2.map (player =>{
+    return (
+<tr 
+ key={player.striker}
+ >
+<td onClick={() => handlePlayerSelect(player.striker)}>{player.player_name}</td>
+<td>{player.runs_scored}</td>
+<td>{player.num_balls}</td>
+
+</tr>
+
+    )
+  })}
+</tbody>      
+      </table>
+  </div>
+  
+  <div className='list-group'>
+      <table className="table table-hover table-dark">
+          <thead>
+            <tr className='bg-primary'>
+                <th scope = "col">Player Name</th>
+                <th scope = "col">Wickets Taken</th>
+                <th scope = "col">Runs Given</th>
+            </tr>
+          </thead>
+<tbody>
+  {TBall2 && TBall2.map (player =>{
+    return (
+<tr 
+ key={player.bowler}
+ >
+<td onClick={() => handlePlayerSelect(player.bowler)}>{player.player_name}</td>
+<td>{player.wickets_taken}</td>
+<td>{player.runs_given}</td>
+
+</tr>
+
+    )
+  })}
+</tbody>      
+      </table>
+  </div>
+
+  {MW.team_name} won by {INF.win_margin} {INF.win_type}
+
+
+<h3>Pie plot for {TN.bat1}</h3>
            <Doughnut
           data={{
             labels: [
@@ -400,24 +484,48 @@ player.player_name
             },
           }}
         />
-          
-  {/* <canvas id="myChart" width="400" height="400"></canvas> */}
-  {/* <div>
-        <Line
-          data={comp}
+
+
+<h3>Pie plot for {TN.bat2}</h3>
+<Doughnut
+          data={{
+            labels: [
+                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  'rgb(5, 99, 132)',
+                  'rgb(52, 162, 235)',
+                  'rgb(25, 205, 86)'
+
+                ],
+                hoverOffset: 4,
+                data: [pie2.ones,pie2.twos, pie2.fours, pie2.sixes,pie2.extra_runs]
+              }
+            ]
+          }}
+  
           options={{
             title:{
               display:true,
               text:'Average Rainfall per month',
-              fontSize:20
+              fontSize:50
             },
             legend:{
               display:true,
-              position:'right'
-            }
+              position:'below'
+            },
           }}
         />
-      </div>  */}
+
+          </div>
+       ) : null}
+          </div>
+
 
   
   </div> 
