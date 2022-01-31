@@ -88,7 +88,7 @@ const MatchList = (props) => {
           </tbody>
       </table>
 
-      <button class="btn btn-primary" onClick={() => handleNextMatches()}>Next</button>
+      <button className="btn btn-primary" onClick={() => handleNextMatches()}>Next</button>
   </div>;
 };
 
