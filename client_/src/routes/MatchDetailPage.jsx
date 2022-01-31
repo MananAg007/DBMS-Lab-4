@@ -12,6 +12,8 @@ import { Context } from '../context/Context';
 import { useHistory } from "react-router-dom";
 const MatchDetailPage = () => {
   const { id } = useParams();
+
+
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );

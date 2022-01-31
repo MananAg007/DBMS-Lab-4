@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-var offset = 0;
+// var offset = 0;
 // @T- /matches 
 app.get("/matches", async (req, res)=>{
 
@@ -37,7 +37,8 @@ app.get("/matches", async (req, res)=>{
             status: "success",
             results: results.rows.length,
             data: {
-                matchList: results.rows 
+                matchList: results.rows,
+                offset : skip
             }     
         });
     } catch (err){

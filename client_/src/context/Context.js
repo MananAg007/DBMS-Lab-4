@@ -39,6 +39,7 @@ export const ContextProvider = (props) => {
   const [ TBall2, STBall2] = useState([]);
   const [TW1, STW1] = useState([]);
   const [MW,SMW] = useState([]);
+  const [ offset, setOffset] = useState(0);
   const [TW2, STW2] = useState([]);
   const [TR1, STR1] = useState([]);
   const [TR2, STR2] = useState([]);
@@ -61,6 +62,7 @@ export const ContextProvider = (props) => {
         TW1, TW2, STW1, STW2,
         TR1, TR2, STR1, STR2,
         setMatches,
+        offset, setOffset,
         TN,STN,
         ER1, SER1, SER2, ER2 ,
         pie, setpie,

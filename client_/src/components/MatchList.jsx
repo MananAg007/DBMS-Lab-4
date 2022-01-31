@@ -4,14 +4,17 @@ import { Context } from '../context/Context';
 import { useHistory } from "react-router-dom";
 const MatchList = (props) => {
     
-   const {matches, setMatches} = useContext(Context)
+   const {matches, setMatches} = useContext(Context);
+   const {offset, setOffset} = useContext(Context);
    let history = useHistory();
    useEffect( ()=> {
         const fetchData = async () => {
             try {
+               console.log(offset);
                 const response = await  MatchFinder.get("/matches");
                 console.log(response);
                 setMatches(response.data.data.matchList);
+                setOffset(response.data.data.offset);
             } catch (err) {}
         }
 
@@ -20,6 +23,15 @@ const MatchList = (props) => {
    
    const handleMatchSelect = (id) => {
     history.push(`/matches/${id}`);
+  };
+
+
+  const handleNextMatches = () => {
+    console.log(offset);
+    // setOffset(offset+10);
+    // history.push("/matches");
+   
+
   };
 //   = async () => {
 //     try {
@@ -64,7 +76,7 @@ const MatchList = (props) => {
           </tbody>
       </table>
 
-      {/* <button class="btn btn-primary" onClick={() => fetchNextList()}>Next</button> */}
+      <button class="btn btn-primary" onClick={() => handleNextMatches()}>Next</button>
   </div>;
 };
 
