@@ -21,7 +21,7 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat , TossWinner, STossWinner, INF, VEN, UMP, P1, P2,  SINF, SVEN, SUMP, SP1, SP2, B1, SB1, B2, SB2, TW1, TW2, STW1, STW2} = useContext(
     Context
   );
-  const {comp, setcomp, names,  SNames, cardtoggle, Scardtoggle, TN,  STN}=  useContext(
+  const {comp, setcomp,comp2, setcomp2, names,  SNames, cardtoggle, Scardtoggle, TN,  STN}=  useContext(
     Context
   );
   let history = useHistory();
@@ -35,6 +35,7 @@ const MatchDetailPage = () => {
         seti1bat(response.data.data.innings1_batting);
         seti2bat(response.data.data.innings2_batting);
         setcomp(response.data.data.innings1_plot);
+        setcomp2(response.data.data.innings2_plot);
         setpie (response.data.data.pieplot);
         STN(response.data.data.battingOrder);
         SNames(response.data.data.Teamnames);
@@ -303,30 +304,60 @@ player.player_name
        
        {
                  labels: comp.map((crypto) => crypto.over_id),
+                 
                  datasets : [{
-                  
+                  pointRadius: 0,
                    fill: false,
                    lineTension: 0.5,
+                   borderColor: 'rgb(255, 99, 132)',
                    backgroundColor: 'rgba(75,192,192,1)',
-                   borderColor: 'rgba(0,0,0,1)',
                    borderWidth: 2,
-                 label: "Batting team 1",
+                 label: TN.bat1,
                  data: comp.map ((cr) => cr.sum)
-                 }]
+                 },
+                 {
+                  
+                  fill: false,
+                  lineTension: 0.5,
+                  borderColor:'rgb(54, 162, 235)',
+                  backgroundColor: 'rgba(75,192,192,1)',
+                  borderWidth: 2,
+                  pointRadius: 0,
+                label: TN.bat2,
+                data: comp2.map ((cr) => cr.sum)
+                }
+                ]
                  
                  } 
       }
-      options={{
-        title:{
-          display:true,
-          text:'Average Rainfall per month',
-          fontSize:50
-        },
-        legend:{
-          display:true,
-          position:'below'
-        },
-      }}
+      options = {{
+    
+          yAxes: [{
+            scaleLabel: {
+              
+              labelString: 'probability'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              
+              labelString: 'probability'
+            }
+          }]
+        }    
+      }
+      // options={{
+      //   title:{
+      //     display:true,
+      //     text:'Average Rainfall per month',
+      //     fontSize:50
+      //   },
+      //   legend:{
+      //     display:true,
+      //     position:'below'
+      //   },
+      // }}
+      
      />
              </div> 
                
