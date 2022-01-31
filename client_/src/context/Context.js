@@ -23,6 +23,17 @@ export const ContextProvider = (props) => {
   const [pie, setpie] = useState([]); 
   const [ER1, SER1] = useState([]);
   const [ER2, SER2] = useState([]);
+  const [B1, SB1] = useState([]);
+  const [B2, SB2] = useState([]);
+  const [ TossWinner, STossWinner] = useState([]);
+  const[INF, SINF] = useState([]);
+  const[VEN, SVEN] = useState([]);
+  const[UMP, SUMP] = useState([]);
+  const[P1,SP1] = useState([]);
+  const[P2,SP2] = useState([]);
+  const[ names,  SNames] = useState([]);
+  const [TW1, STW1] = useState([]);
+  const [TW2, STW2] = useState([]);
   const [TR1, STR1] = useState([]);
   const [TR2, STR2] = useState([]);
   const [comp, setcomp] = useState([]);
@@ -38,6 +49,8 @@ export const ContextProvider = (props) => {
     <Context.Provider
       value={{
         matches,
+        TossWinner, STossWinner,
+        TW1, TW2, STW1, STW2,
         TR1, TR2, STR1, STR2,
         setMatches,
         TN,STN,
@@ -45,7 +58,10 @@ export const ContextProvider = (props) => {
         pie, setpie,
         addMatches,
         pointTable, 
+        names,  SNames,
+        INF, VEN, UMP, P1, P2,  SINF, SVEN, SUMP, SP1, SP2,
         setPointTable,
+        B1, SB1, B2, SB2,
         selectedMatch,
         cardtoggle, Scardtoggle,
         setSelectedMatch,

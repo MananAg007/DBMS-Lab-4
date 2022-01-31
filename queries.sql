@@ -44,8 +44,13 @@ select coalesce(sum(runs_scored),0)  as total_runs from ball_by_ball where match
 Bowler:
 with T1 as
 (select bowler, coalesce(sum(runs_scored),0)  as runs_given from ball_by_ball where match_id =  598008 and innings_no =1 group by bowler),
-with T2 as 
-(select bowler, count(*)  as wickets from ball_by_ball where match_id =  598008 and innings_no =1 and out_type is in ?? group by bowler)
+T2 as 
+(select bowler, count(*)  as wickets from ball_by_ball where match_id =  598008 and innings_no =1 and out_type is not null group by bowler),
+T3 as 
+(select bowler, coalesce(count(distinct ball_id),0)  as balls_bowled from ball_by_ball where match_id =  598008 and innings_no =1 group by bowler),
+T4 as  (select T1.bowler,runs_given, wickets , balls_bowled from T1 full outer join  T2 on T1.bowler = T2.bowler  full outer join  T3 on Coalesce(T1.bowler , T2.bowler ) = T3.bowler )
+select * from T4, player where player_id = bowler;
+
 
 
 with  B as (select * from ball_by_ball where match_id = 829720)

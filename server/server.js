@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 const morgan = require("morgan");
+const { query } = require("express");
 const app = express();
 
 app.use(cors());
@@ -94,16 +95,66 @@ app.get("/matches/:id", async (req, res)=>{
         )
         )
         select * from B, C;`,[req.params.id]);
-        res.status(200).json({
+
+
+        const q5 = `with T1 as
+        (select bowler, coalesce(sum(runs_scored),0)  as runs_given from ball_by_ball where match_id =  $1 and innings_no = $2 group by bowler),
+        T2 as 
+        (select bowler, coalesce(count(*),0)  as wickets from ball_by_ball where match_id =  $1 and innings_no = $2  and out_type is not null group by bowler),
+        T3 as 
+        (select bowler, coalesce(count(distinct ball_id),0)  as balls_bowled from ball_by_ball where match_id =  $1 and innings_no = $2  group by bowler),
+        T4 as  (select T1.bowler as bowler_id , coalesce(runs_given,0) as runs_given,  coalesce(wickets, 0) as wickets , coalesce(balls_bowled, 0) as balls_bowled from T1 full outer join  T2 on T1.bowler = T2.bowler  full outer join  T3 on Coalesce(T1.bowler , T2.bowler ) = T3.bowler )
+        select * from T4, player where player_id = bowler_id;`
+        const innings1_bowling = await db.query(q5, [req.params.id, 1]);
+        const innings2_bowling = await db.query(q5, [req.params.id, 2]);
+ 
+        const q6 = `select coalesce(count(out_type),0) as total_wickets from ball_by_ball where  match_id =  $1 and innings_no = $2 ;  `
+        const innings1_total_wickets = await db.query(q6, [req.params.id, 1]);
+        const innings2_total_wickets= await db.query(q6, [req.params.id, 2]);
+        
+        
+        const q7 = `select * from match where match_id = $1; `;
+        const info = await db.query(q7, [req.params.id]);
+        const q8 = `select * from venue, match where match.venue_id = venue.venue_id and  match_id = $1;` 
+        const venue= await db.query(q8, [req.params.id]);
+        const q9 = `select player_name from player as P, player_match as PM, match as M where M.match_id = PM.match_id and PM.team_id = team1 and P.player_id  = PM.player_id and  M.match_id = $1; `;
+        const q10 = `select player_name from player as P, player_match as PM, match as M where M.match_id = PM.match_id and PM.team_id = team2 and P.player_id  = PM.player_id and M. match_id = $1; `;
+        const player1= await db.query(q9, [req.params.id]);
+        const  player2 = await db.query(q10, [req.params.id]);
+  const q11 =`select umpire_name from umpire U, umpire_match UM where UM.umpire_id = U.umpire_id and  match_id = $1; `;
+        const umpires = await db.query(q11, [req.params.id]);
+
+
+        const q12 = `select team_name as name from team, match where toss_winner = team_id and match_id = $1;`;
+        const TossWinner = await db.query(q12, [req.params.id]);
+
+
+        const q13 = `with A(team_name1) as (select team_name from team,match where team_id = team1 and match_id = $1 ),
+        B(team_name2) as (select team_name from team,match where team_id = team2 and match_id = $1 )
+        select * from A, B;
+        `
+        const Teamnames = await db.query(q13, [req.params.id]);
+                res.status(200).json({
             status: "success",
             data: {
+                TossWinner: TossWinner.rows[0],
+                info : info.rows[0],
+                venue: venue.rows[0],
+                player1: player1.rows,
+                player2: player2.rows,
+                Teamnames: Teamnames.rows[0],
+                umpires: umpires.rows,
                 innings1_batting: innings1_batting.rows ,
                 innings2_batting: innings2_batting.rows ,
+                innings1_bowling : innings1_bowling.rows,
+                innings2_bowling :innings2_bowling.rows,
                 innings2_extra_runs: innings2_extra_runs.rows[0] ,
                 innings1_extra_runs: innings1_extra_runs.rows[0] ,
                 innings1_total_runs: innings1_total_runs.rows [0],
                 innings2_total_runs: innings2_total_runs.rows[0],
                 innings1_plot:innings1_runsarray.rows,
+                innings2_total_wickets :innings2_total_wickets.rows[0],
+                innings1_total_wickets : innings1_total_wickets.rows[0],
                 pieplot: pieplot.rows[0],
                 battingOrder : battingOrder .rows[0]
 
