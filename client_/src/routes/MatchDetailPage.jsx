@@ -14,12 +14,14 @@ const MatchDetailPage = () => {
   const { id } = useParams();
 
   const divStyleLeft = {
-    width: '50%', 
-    float: 'left'
+    width: '49%', 
+    float: 'left',
+    'text-align': 'center'
   };
   const divStyleRight = {
-    width: '50%', 
-    float: 'right'
+    width: '49%', 
+    float: 'right',
+    'text-align': 'center'
   };
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
@@ -379,6 +381,8 @@ player.player_name  + '  '
 <div>
   <h2>MATCH SUMMARY</h2>
  <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
+ <br></br>
+ <div style={divStyleLeft}>
  <div>{names.team_name1} - {TR1.total_runs} / {TW1.total_wickets} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
@@ -432,7 +436,9 @@ player.player_name  + '  '
 </tbody>      
       </table>
   </div>
+</div>
 
+<div style = {divStyleRight}>
  <div>{names.team_name2} - {TR2.total_runs} / {TW2.total_wickets} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
@@ -487,7 +493,8 @@ player.player_name  + '  '
 </tbody>      
       </table>
   </div>
-
+</div>
+<br></br>
   {MW.team_name} won by {INF.win_margin} {INF.win_type}
 <br></br>
 
@@ -574,7 +581,8 @@ player.player_name  + '  '
           </div>
 
 
-  
+  <br></br>
+  <br></br>
   </div> 
   
 };
