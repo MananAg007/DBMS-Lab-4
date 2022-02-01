@@ -54,7 +54,7 @@ const AddVenue = () => {
                 <input value = {cp} onChange={(e) => setCapacity(e.target.value)} type="number" className='form-control' placeholder='Capacity'/>
             </div>
             <br></br>
-            <center><button onClick={handleSubmit} type = "submit" className="btn btn-outline-warning btn-lg">Submit</button></center>
+            <center><button onClick={handleSubmit} type = "submit" className="btn btn-warning btn-lg">Submit</button></center>
             
           </div>
       </form>

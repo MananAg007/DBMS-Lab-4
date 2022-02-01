@@ -287,7 +287,7 @@ player.player_name  + '  '
     </tbody>
  </table>
 <br></br>
-<div style= {butn}>  <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} className='btn btn-primary'> Show Comparison</button>--||--<button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-primary'> Show Summary</button></div>  
+<div style= {butn}>  <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} className='btn btn-warning btn-lg'> Show Comparison</button>--||--<button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-warning btn-lg'> Show Summary</button></div>  
 <br></br>
   
   {cardtoggle === "1"? (
