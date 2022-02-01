@@ -220,7 +220,7 @@ app.get("/pointstable/:year", async (req, res)=>{
             select team_id,match_id, sum(runs_scored), count(distinct over_id) from B group by team_id,match_id
         ),
         N(tid, mid,val) as (
-            select T.tid, T.mid, (T.runsScored*1.0/T.oversPlayed) - (OP.opponentRunsScored*1.0/opponentOversPlayed)
+            select T.tid, T.mid, ROUND((T.runsScored*1.0/T.oversPlayed) - (OP.opponentRunsScored*1.0/opponentOversPlayed),2)
             from T natural join OP 
         ),  CountVals as (
         select team_id, 
