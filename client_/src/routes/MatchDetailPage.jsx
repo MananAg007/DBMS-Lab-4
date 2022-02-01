@@ -461,7 +461,7 @@ player.player_name  + '  '
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">Player Name</th>
+                <th scope = "col">Batsman</th>
                 <th scope = "col">Runs Scored</th>
                 <th scope = "col">Balls Played</th>
             </tr>
@@ -487,7 +487,7 @@ player.player_name  + '  '
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">Player Name</th>
+                <th scope = "col">Bowler</th>
                 <th scope = "col">Wickets Taken</th>
                 <th scope = "col">Runs Given</th>
             </tr>
@@ -517,7 +517,7 @@ player.player_name  + '  '
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">Player Name</th>
+                <th scope = "col">Batsman</th>
                 <th scope = "col">Runs Scored</th>
                 <th scope = "col">Balls Played</th>
             </tr>
@@ -544,7 +544,7 @@ player.player_name  + '  '
       <table className="table table-hover table-dark">
           <thead>
             <tr className='bg-primary'>
-                <th scope = "col">Player Name</th>
+                <th scope = "col">Bowler</th>
                 <th scope = "col">Wickets Taken</th>
                 <th scope = "col">Runs Given</th>
             </tr>
