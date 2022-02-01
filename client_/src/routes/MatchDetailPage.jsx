@@ -277,7 +277,7 @@ player.player_name
                    fill: false,
                    lineTension: 0.5,
                    borderColor: 'rgb(255, 99, 132)',
-                   backgroundColor: 'rgba(75,192,192,1)',
+                   backgroundColor: 'rgb(255, 99, 132)',
                    borderWidth: 2,
                  label: TN.bat1,
                  data: comp.map ((cr) => cr.sum)
@@ -287,7 +287,7 @@ player.player_name
                   fill: false,
                   lineTension: 0.5,
                   borderColor:'rgb(54, 162, 235)',
-                  backgroundColor: 'rgba(75,192,192,1)',
+                  backgroundColor: 'rgb(54, 162, 235)',
                   borderWidth: 2,
                   pointRadius: 0,
                 label: TN.bat2,
