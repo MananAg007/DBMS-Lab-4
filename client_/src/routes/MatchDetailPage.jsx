@@ -24,7 +24,12 @@ const MatchDetailPage = () => {
   }
   const head3 = {
     color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '30px', 'font-weight': 'normal', 'line-height': '48px', 
+    'font-size': '30px', 'font-weight': 'normal', 
+    'text-align': 'center'
+  }
+  const head4 = {
+     'font-family': 'Trocchi', 
+    'font-size': '15px', 'font-weight': 'normal', 
     'text-align': 'center'
   }
   const divStyleLeft = {
@@ -35,6 +40,9 @@ const MatchDetailPage = () => {
   const divStyleRight = {
     width: '49%', 
     float: 'right',
+    'text-align': 'center'
+  };
+  const butn = {
     'text-align': 'center'
   };
   // const { selectedMatch, setSelectedMatch } = useContext(
@@ -134,13 +142,12 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
- <div>
- Extras : {ER1.extra_runs }
-   </div>
- Total Score : {TR1.total_runs} ({TW1.total_wickets})
+ 
   </div>
 
 
+  <h3 style = {head4}>Total Score : {TR1.total_runs} ({TW1.total_wickets}) ||  Extras : {ER1.extra_runs }</h3>
+ 
   <div>
       <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
@@ -206,13 +213,9 @@ const MatchDetailPage = () => {
 </tbody>      
       </table>
   </div>
- <div>
- Extras : {ER2.extra_runs }
-   </div>
- Total Score : {TR2.total_runs} ({TW2.total_wickets})
   </div>
-
-
+  <h3 style={head4}>Total Score : {TR2.total_runs} ({TW2.total_wickets}) || Extras : {ER2.extra_runs }</h3>
+  
   <div>
       <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
@@ -283,9 +286,9 @@ player.player_name  + '  '
         {/* <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr> */}
     </tbody>
  </table>
-
-  
-  <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} className='btn btn-primary'> Show Comparison</button>
+<br></br>
+<div style= {butn}>  <button id = "comparisonToggle"onClick={() => Scardtoggle("1")} className='btn btn-primary'> Show Comparison</button>--||--<button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-primary'> Show Summary</button></div>  
+<br></br>
   
   {cardtoggle === "1"? (
     <div id = "comparison">
@@ -334,31 +337,22 @@ player.player_name  + '  '
                  } 
       }
       options = {{
-    
-          yAxes: [{
-            scaleLabel: {
-              
-              labelString: 'probability'
-            }
-          }],
-          xAxes: [{
-            scaleLabel: {
-              
-              labelString: 'probability'
-            }
-          }]
+    plugins:{
+      title:{
+        display:true,
+        text:'Average Rainfall per month',
+        fontSize:50
+      },
+      legend:{
+        display:true,
+        position:'top'
+      },
+    }
+          
         }    
       }
       // options={{
-      //   title:{
-      //     display:true,
-      //     text:'Average Rainfall per month',
-      //     fontSize:50
-      //   },
-      //   legend:{
-      //     display:true,
-      //     position:'below'
-      //   },
+        
       // }}
       
      />
@@ -370,17 +364,97 @@ player.player_name  + '  '
 
 <div>
 <br></br>
+<br></br>
 
 
-  <button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-primary'> Show Summary</button>
+  
   {Summarytoggle === "1"? (
 <div>
   <h2 style = {head2}>Match Summary</h2>
- <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
- {MW.team_name} won by {INF.win_margin} {INF.win_type}
+  <h2 style = {head4}> Match ID : {id}, IPL ,  Season Year: {INF.season_year} || {MW.team_name} won by {INF.win_margin} {INF.win_type}</h2>
+
+ <div style={divStyleLeft}>
+<Doughnut
+          data={{
+            labels: [
+                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  '	rgb(60,179,113)',
+                  'rgb(255,127,80)',
+
+                ],
+                hoverOffset: 4,
+                data: [pie.ones,pie.twos, pie.fours, pie.sixes,pie.extra_runs]
+              }
+            ]
+          }}
+  
+          options={{
+            plugins:{
+              title:{
+                display:true,
+                text:'Team: '+ TN.bat1+ '-' + TR1.total_runs + '/' + TW1.total_wickets,
+                fontSize:50
+              },
+              legend:{
+                display:true,
+                position:'top'
+              },
+            }
+            
+          }}
+        />
+</div> 
+
+<div style = {divStyleRight}>
+<Doughnut
+          data={{
+            labels: [
+                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
+            datasets: [
+              {
+                label: 'Rainfall',
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)',
+                  '	rgb(60,179,113)',
+                  'rgb(255,127,80)',
+                  
+
+                ],
+                hoverOffset: 4,
+                data: [pie2.ones,pie2.twos, pie2.fours, pie2.sixes,pie2.extra_runs]
+              }
+            ]
+          }}
+  
+          options={{
+            plugins:{
+              title:{
+                display:true,
+                text:'Team: '+ TN.bat2 + '-' + TR2.total_runs + '/' + TW2.total_wickets,
+                fontSize:50
+              },
+              legend:{
+                display:true,
+                position:'top'
+              },
+            }
+            
+          }}
+        />
+</div>
+ 
  <br></br>
  <div style={divStyleLeft}>
- <div>{TN.bat1} - {TR1.total_runs} / {TW1.total_wickets} </div>
+ <div style = {head4}>{TN.bat1} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -436,7 +510,7 @@ player.player_name  + '  '
 </div>
 
 <div style = {divStyleRight}>
- <div>{TN.bat2} - {TR2.total_runs} / {TW2.total_wickets} </div>
+ <div style = {head4}>{TN.bat2} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -497,86 +571,7 @@ player.player_name  + '  '
 
 
           
-<div style={divStyleLeft}>
-<h3></h3>
-<Doughnut
-          data={{
-            labels: [
-                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
-            datasets: [
-              {
-                label: 'Rainfall',
-                backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)',
-                  '	rgb(60,179,113)',
-                  'rgb(255,127,80)',
 
-                ],
-                hoverOffset: 4,
-                data: [pie.ones,pie.twos, pie.fours, pie.sixes,pie.extra_runs]
-              }
-            ]
-          }}
-  
-          options={{
-            plugins:{
-              title:{
-                display:true,
-                text:'Pie plot for '+ TN.bat1,
-                fontSize:50
-              },
-              legend:{
-                display:true,
-                position:'top'
-              },
-            }
-            
-          }}
-        />
-</div> 
-
-<div style = {divStyleRight}>
-<h3>Pie plot for {TN.bat2}</h3>
-<Doughnut
-          data={{
-            labels: [
-                     'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
-            datasets: [
-              {
-                label: 'Rainfall',
-                backgroundColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(54, 162, 235)',
-                  'rgb(255, 205, 86)',
-                  '	rgb(60,179,113)',
-                  'rgb(255,127,80)',
-                  
-
-                ],
-                hoverOffset: 4,
-                data: [pie2.ones,pie2.twos, pie2.fours, pie2.sixes,pie2.extra_runs]
-              }
-            ]
-          }}
-  
-          options={{
-            plugins:{
-              title:{
-                display:true,
-                text:'Pie plot for '+ TN.bat2,
-                fontSize:50
-              },
-              legend:{
-                display:true,
-                position:'top'
-              },
-            }
-            
-          }}
-        />
-</div>
 
 
           </div>
