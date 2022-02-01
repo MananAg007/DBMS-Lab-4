@@ -6,6 +6,11 @@ import Chart from 'chart.js/auto';
 import {Bar, Doughnut} from 'react-chartjs-2';
 
 const PlayerDetailPage = () => {
+  const head = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
   const divStyleLeft = {

@@ -8,7 +8,11 @@ import PlayerDetailPage from './routes/PlayerDetailPage';
 import { ContextProvider } from './context/Context';
 import PointsTablePage from './routes/PointsTablePage';
 const App = () => {
-    return (
+    
+  const bg = {
+ 'background-color': 'rgb(233, 150, 122)'
+  };
+  return (
   <ContextProvider>
       
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
@@ -32,7 +36,7 @@ const App = () => {
 <br></br>
 <br></br>
 <br></br>
-<div className="container">
+<div className="container" >
            <Router>
                 <Switch>
                <Route exact path = "/matches" component={MatchHomePage}></Route>

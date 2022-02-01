@@ -3,6 +3,35 @@ import VenueFinder from '../apis/VenueFinder';
 import { Context } from '../context/Context';
 
 const AddVenue = () => {
+    const head = {
+        color: '#7c795d', 'font-family': 'Trocchi', 
+        'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
+        'text-align': 'center'
+      }
+      const head2 = {
+        color: '#7c795d', 'font-family': 'Trocchi', 
+        'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
+        'text-align': 'center'
+      }
+
+      const btn = {
+        position: 'relative',
+        width: '180px',
+        height: '60px',
+        margin: '20px',
+        'line-height': '60px',
+        'letter-spacing': '2px',
+        'text-decoration': 'none',
+        'text-transform': 'uppercase',
+        'text-align': 'center',
+        hover: {
+          border: '1px solid transparent',
+          background: 'var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px',
+          'transition-delay': '0.8s',
+          'background-size': '180px',
+          animation: 'animate var(--speed-fast) steps(8) forwards',
+      }
+    }
     const {addVenues} = useContext(Context)
     const [vname, setVenueName] = useState("")
     const [cname, setCountryName] = useState("")
@@ -26,7 +55,7 @@ const AddVenue = () => {
       }
   }
   return <div className='mb-4'>
-      <h1 className='font-weight-heavy display-1 text-center'>Form </h1>
+      <h1 style = {head2}>Register a Venue! </h1>
       <form action="">
           <div className="form-row">
             <div className="col">
@@ -42,7 +71,7 @@ const AddVenue = () => {
                 <input value = {cp} onChange={(e) => setCapacity(e.target.value)} type="number" className='form-control' placeholder='Capacity'/>
             </div>
             <br></br>
-            <center><button onClick={handleSubmit} type = "submit" className='btn btn-primary'>Submit</button></center>
+            <center><button onClick={handleSubmit} type = "submit" className="btn btn-outline-warning btn-lg">Submit</button></center>
             
           </div>
       </form>

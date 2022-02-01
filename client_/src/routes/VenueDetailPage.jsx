@@ -19,7 +19,11 @@ const VenueDetailPage = () => {
     float: 'right',
     'text-align': 'center'
   };
-
+  const head = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
   useEffect( ()=> {
     const fetchData = async () => {
         try {
@@ -42,7 +46,7 @@ const VenueDetailPage = () => {
 return (<div>
        
         
-  <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
+  <h1 style = {head}>Venue Details </h1>
 <table className="table table-hover table-dark">
     <thead>
       <tr className='bg-primary'>

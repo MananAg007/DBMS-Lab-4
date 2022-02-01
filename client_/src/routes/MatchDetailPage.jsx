@@ -12,7 +12,16 @@ import { Context } from '../context/Context';
 import { useHistory } from "react-router-dom";
 const MatchDetailPage = () => {
   const { id } = useParams();
-
+  const head = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
+  const head2 = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
   const divStyleLeft = {
     width: '49%', 
     float: 'left',
@@ -87,7 +96,7 @@ const MatchDetailPage = () => {
 
   
   return <div>
-      <h1 className='font-weight-light display-1 text-center'>Score Card </h1>
+      <h1 style = {head}>Score Card </h1>
       <div>
       <h3>Inning 1 : {TN.bat1} </h3>
       <h3>Batting</h3>
@@ -232,7 +241,7 @@ const MatchDetailPage = () => {
   </div>
 
 
-<div>MATCH INFO SECTION</div>
+<div style = {head2}>Match Information</div>
 <table className="table table-hover table-dark">
     <thead>
       <tr className='bg-primary'>
@@ -361,7 +370,7 @@ player.player_name  + '  '
   <button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-primary'> Show Summary</button>
   {Summarytoggle === "1"? (
 <div>
-  <h2>MATCH SUMMARY</h2>
+  <h2 style = {head2}>Match Summary</h2>
  <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
  <br></br>
  <div style={divStyleLeft}>
@@ -483,7 +492,7 @@ player.player_name  + '  '
 
           
 <div style={divStyleLeft}>
-<h3>Pie plot for {TN.bat1}</h3>
+<h3></h3>
 <Doughnut
           data={{
             labels: [
@@ -506,21 +515,23 @@ player.player_name  + '  '
           }}
   
           options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:50
-            },
-            legend:{
-              display:true,
-              position:'below'
-            },
+            plugins:{
+              title:{
+                display:true,
+                text:'Pie plot for '+ TN.bat1,
+                fontSize:50
+              },
+              legend:{
+                display:true,
+                position:'top'
+              },
+            }
+            
           }}
         />
 </div> 
 
 <div style = {divStyleRight}>
-<h3>Pie plot for {TN.bat2}</h3>
 <Doughnut
           data={{
             labels: [
@@ -544,15 +555,18 @@ player.player_name  + '  '
           }}
   
           options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:50
-            },
-            legend:{
-              display:true,
-              position:'below'
-            },
+            plugins:{
+              title:{
+                display:true,
+                text:'Pie plot for '+ TN.bat2,
+                fontSize:50
+              },
+              legend:{
+                display:true,
+                position:'top'
+              },
+            }
+            
           }}
         />
 </div>
