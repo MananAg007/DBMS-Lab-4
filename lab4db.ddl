@@ -265,7 +265,7 @@ ALTER TABLE public.umpire_match OWNER TO manan;
 --
 
 CREATE TABLE public.venue (
-    venue_id integer DEFAULT nextval('public.auto_key'::regclass) NOT NULL,
+    venue_id integer DEFAULT nextval('public.auto_increment_id_seq'::regclass) NOT NULL,
     venue_name text,
     city_name text,
     country_name text,
