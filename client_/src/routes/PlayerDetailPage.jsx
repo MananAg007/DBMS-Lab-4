@@ -78,15 +78,18 @@ return (<div className='list-group'>
             ]
           }}
           options={{
-            title:{
-              display:true,
-              text:'Runs scored',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
+            plugins:{
+              title:{
+                display:true,
+                text:'Runs scored',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'right'
+              }
             }
+            
           }}
         />
 <h1 className='font-weight-light display-1 text-center'>Bowling Statistics </h1>
@@ -131,15 +134,18 @@ return (<div className='list-group'>
             ]
           }}
           options={{
-            title:{
-              display:true,
-              text:'Runs Conceded',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
+            plugins:{
+              title:{
+                display:true,
+                text:'Runs Conceded',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'right'
+              }
             }
+            
           }}
         />
 </div>

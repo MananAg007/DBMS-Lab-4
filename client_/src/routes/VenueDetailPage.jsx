@@ -9,6 +9,17 @@ const VenueDetailPage = () => {
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
 
+  const divStyleLeft = {
+    width: '40%', 
+    float: 'left',
+    'text-align': 'center'
+  };
+  const divStyleRight = {
+    width: '49%', 
+    float: 'right',
+    'text-align': 'center'
+  };
+
   useEffect( ()=> {
     const fetchData = async () => {
         try {
@@ -49,6 +60,7 @@ return (<div className='list-group'>
         <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr>
     </tbody>
 </table>
+<div>
 <Doughnut
           data={{
             labels: ['Team Batting First: Won', 'Team Batting Second: Won',
@@ -68,17 +80,22 @@ return (<div className='list-group'>
           }}
   
           options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:50
-            },
-            legend:{
-              display:true,
-              position:'below'
-            },
+            plugins:{
+              title:{
+                display:true,
+                text:'Average Rainfall per month',
+                fontSize:50
+              },
+              legend:{
+                display:true,
+                position:'top'
+              },
+            }
+            
           }}
         />
+        </div>
+        <div>
 <Line
           data={{
             labels: V8.map((crypto) => crypto.season_year),
@@ -95,18 +112,21 @@ return (<div className='list-group'>
             ]
           }}
           options={{
-            title:{
-              display:true,
-              text:'Average First Innings score',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
+            plugins:{
+              title:{
+                display:true,
+                text:'Average First Innings score',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'top'
+              }
             }
+            
           }}
         />
-
+</div>
 </div>
 );
 
