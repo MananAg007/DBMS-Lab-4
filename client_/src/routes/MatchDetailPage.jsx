@@ -114,7 +114,7 @@ const MatchDetailPage = () => {
       <h3 style={head2}>Innings 1 : {TN.bat1} </h3>
       <h3 style={head3}>Batting</h3>
 <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Batter</th>
@@ -151,7 +151,7 @@ const MatchDetailPage = () => {
   <div>
       <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">  Bowler</th>
@@ -185,7 +185,7 @@ const MatchDetailPage = () => {
       <h3 style={head2}>Innings 2 : {TN.bat2} </h3>
       <h3 style={head3}>Batting</h3>
 <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Batter</th>
@@ -219,7 +219,7 @@ const MatchDetailPage = () => {
   <div>
       <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">  Bowler</th>
@@ -250,7 +250,7 @@ const MatchDetailPage = () => {
 
 
 <div style = {head2}>Match Information</div>
-<table className="table table-hover table-dark">
+<table className="table table-hover table-dark table-striped table-bordered">
     <thead>
       <tr className='bg-primary'>
           <th scope = "col">Field</th>
@@ -458,7 +458,7 @@ player.player_name  + '  '
  <div style={divStyleLeft}>
  <div style = {head4}>{TN.bat1} || Top Players</div>
  <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Batsman</th>
@@ -484,7 +484,7 @@ player.player_name  + '  '
       </table>
   </div>
   <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Bowler</th>
@@ -514,7 +514,7 @@ player.player_name  + '  '
 <div style = {divStyleRight}>
  <div style = {head4}>{TN.bat2} || Top Players</div>
  <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Batsman</th>
@@ -541,7 +541,7 @@ player.player_name  + '  '
   </div>
   
   <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Bowler</th>

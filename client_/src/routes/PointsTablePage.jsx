@@ -3,6 +3,21 @@ import { useParams } from 'react-router-dom';
 
 import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
+const head = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
+  const head2 = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
+  const head3 = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '30px', 'font-weight': 'normal', 
+    'text-align': 'center'
+  }
 function PointsTablePage() {
     const {year} = useParams();
     const {pointTable, setPointTable } = useContext(
@@ -18,7 +33,9 @@ function PointsTablePage() {
     fetchData();
 },[]);
   return <div className='list-group'>
-  <table className="table table-hover table-dark">
+      <h1 style = {head}>Points Table </h1>
+      <h1 style = {head3}>Year: {year} </h1>
+  <table className="table table-hover table-dark table-striped table-bordered">
       <thead>
         <tr className='bg-primary'>
             <th scope = "col">Team Name</th>

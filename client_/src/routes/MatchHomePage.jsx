@@ -9,7 +9,7 @@ const MatchHomePage = () => {
   }
   return (<div>
 
-    <h1 style={head}>Matches Table</h1>
+    <h1 style={head}>Matches!</h1>
       <MatchList/>
   </div>);
 };

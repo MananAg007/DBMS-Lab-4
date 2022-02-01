@@ -29,6 +29,12 @@ const App = () => {
         <li className="nav-item">
           <a className="nav-link" href="http://localhost:3000/venues">Venues</a>
         </li>
+        <li className="nav-item">
+          <a className="nav-link" href="http://localhost:3000/players/2">Players</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="http://localhost:3000/pointstable/2011">PointsTable</a>
+        </li>
       </ul>
     </div>
     </div>

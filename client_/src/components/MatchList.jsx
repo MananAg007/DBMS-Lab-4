@@ -56,7 +56,7 @@ const MatchList = (props) => {
 // fetchData();
 // },[]) 
   return <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Team-1</th>

@@ -50,7 +50,8 @@ const PlayerDetailPage = () => {
 return (<div >
 {/* <canvas id="lineChart" height="400" width="400"></canvas> */}
   <h1 style={head}>Player Details </h1>
-<table className="table table-hover table-dark">
+  <br></br>
+<table className="table table-hover table-dark table-striped table-bordered">
     <thead>
       <tr className='bg-primary'>
           <th scope = "col">Field</th>
@@ -67,7 +68,7 @@ return (<div >
 
 <div style = {divStyleLeft}>
 <h1 style={head2}>Batting Statistics </h1>
-<table className="table table-hover table-dark">
+<table className="table table-hover table-dark table-striped table-bordered">
     <thead>
       <tr className='bg-primary'>
           <th scope = "col">Field</th>
@@ -87,7 +88,7 @@ return (<div >
 </table>
 </div>
 <div style ={divStyleRight} ><h1 style={head2}>Bowling Statistics </h1>
-<table className="table table-hover table-dark">
+<table className="table table-hover table-dark table-striped table-bordered">
     <thead>
       <tr className='bg-primary'>
           <th scope = "col">Field</th>
@@ -122,7 +123,7 @@ return (<div >
             plugins:{
               title:{
                 display:true,
-                text:'Runs scored',
+                text:'Batsman Statistics',
                 fontSize:20
               },
               legend:{
@@ -161,7 +162,7 @@ return (<div >
             plugins:{
               title:{
                 display:true,
-                text:'Runs Conceded',
+                text:'Bowler Statistics',
                 fontSize:20
               },
               legend:{

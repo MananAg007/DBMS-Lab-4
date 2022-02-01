@@ -23,7 +23,7 @@ const VenueList = (props) => {
     history.push(`/venues/${id}`);
   };
   return <div className='list-group'>
-      <table className="table table-hover table-dark">
+      <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
             <tr className='bg-primary'>
                 <th scope = "col">Venue ID</th>
