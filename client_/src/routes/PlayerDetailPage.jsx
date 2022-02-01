@@ -11,6 +11,11 @@ const PlayerDetailPage = () => {
     'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
     'text-align': 'center'
   }
+  const head2 = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
   const divStyleLeft = {
@@ -44,7 +49,7 @@ const PlayerDetailPage = () => {
 
 return (<div >
 {/* <canvas id="lineChart" height="400" width="400"></canvas> */}
-  <h1 className='font-weight-light display-1 text-center'>Player Details </h1>
+  <h1 style={head}>Player Details </h1>
 <table className="table table-hover table-dark">
     <thead>
       <tr className='bg-primary'>
@@ -61,7 +66,7 @@ return (<div >
 </table>
 
 <div style = {divStyleLeft}>
-<h1 className='font-weight-light display-1 text-center'>Batting Statistics </h1>
+<h1 style={head2}>Batting Statistics </h1>
 <table className="table table-hover table-dark">
     <thead>
       <tr className='bg-primary'>
@@ -81,7 +86,7 @@ return (<div >
     </tbody>
 </table>
 </div>
-<div style ={divStyleRight}><h1 className='font-weight-light display-1 text-center'>Bowling Statistics </h1>
+<div style ={divStyleRight} ><h1 style={head2}>Bowling Statistics </h1>
 <table className="table table-hover table-dark">
     <thead>
       <tr className='bg-primary'>

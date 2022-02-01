@@ -22,6 +22,11 @@ const MatchDetailPage = () => {
     'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
     'text-align': 'center'
   }
+  const head3 = {
+    color: '#7c795d', 'font-family': 'Trocchi', 
+    'font-size': '30px', 'font-weight': 'normal', 'line-height': '48px', 
+    'text-align': 'center'
+  }
   const divStyleLeft = {
     width: '49%', 
     float: 'left',
@@ -98,8 +103,8 @@ const MatchDetailPage = () => {
   return <div>
       <h1 style = {head}>Score Card </h1>
       <div>
-      <h3>Inning 1 : {TN.bat1} </h3>
-      <h3>Batting</h3>
+      <h3 style={head2}>Innings 1 : {TN.bat1} </h3>
+      <h3 style={head3}>Batting</h3>
 <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -137,7 +142,7 @@ const MatchDetailPage = () => {
 
 
   <div>
-      <h3>Bowling</h3>
+      <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -170,8 +175,8 @@ const MatchDetailPage = () => {
 
 
       <div>
-      <h3>Inning 2 : {TN.bat2} </h3>
-      <h3>Batting</h3>
+      <h3 style={head2}>Innings 2 : {TN.bat2} </h3>
+      <h3 style={head3}>Batting</h3>
 <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -209,7 +214,7 @@ const MatchDetailPage = () => {
 
 
   <div>
-      <h3>Bowling</h3>
+      <h3 style={head3}>Bowling</h3>
 <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -364,7 +369,7 @@ player.player_name  + '  '
 
 
 <div>
-
+<br></br>
 
 
   <button id = "summaryTOggle"onClick={() => Summarytogglefunc("1")} className='btn btn-primary'> Show Summary</button>
@@ -372,6 +377,7 @@ player.player_name  + '  '
 <div>
   <h2 style = {head2}>Match Summary</h2>
  <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
+ {MW.team_name} won by {INF.win_margin} {INF.win_type}
  <br></br>
  <div style={divStyleLeft}>
  <div>{TN.bat1} - {TR1.total_runs} / {TW1.total_wickets} </div>
@@ -486,7 +492,7 @@ player.player_name  + '  '
   </div>
 </div>
 <br></br>
-  {MW.team_name} won by {INF.win_margin} {INF.win_type}
+  
 <br></br>
 
 
@@ -532,6 +538,7 @@ player.player_name  + '  '
 </div> 
 
 <div style = {divStyleRight}>
+<h3>Pie plot for {TN.bat2}</h3>
 <Doughnut
           data={{
             labels: [
