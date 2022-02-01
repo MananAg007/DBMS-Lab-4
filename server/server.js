@@ -156,6 +156,12 @@ app.get("/matches/:id", async (req, res)=>{
         const TopBowlers2 = await  db.query(q15, [req.params.id, 2]);
 
 
+
+        const q16 = `with O as (select over_id,sum(runs_scored) as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by over_id order by over_id ), B as(select over_id, sum(runs) over (order by over_id asc rows between unbounded preceding and current row) from O order by over_id), M as (select over_id from ball_by_ball where match_id =  $1 and innings_no = $2 and out_type is not null) select * from B where over_id in (select * from M) order by over_id;`;
+        
+        const innings1_scatter = await db.query(q16,  [req.params.id, 1]);
+        const innings2_scatter = await db.query(q16,  [req.params.id, 2]);
+
         const winnername = await db.query(`select team_name from team, match where match_id = $1 and team_id = match_winner`, [req.params.id])
                 res.status(200).json({
             status: "success",
@@ -182,6 +188,8 @@ app.get("/matches/:id", async (req, res)=>{
                 innings2_total_runs: innings2_total_runs.rows[0],
                 innings1_plot:innings1_runsarray.rows,
                 innings2_plot:innings2_runsarray.rows,
+                innings1_scatter: innings1_scatter.rows,
+                innings2_scatter: innings2_scatter.rows,
                 innings2_total_wickets :innings2_total_wickets.rows[0],
                 innings1_total_wickets : innings1_total_wickets.rows[0],
                 pieplot: pieplot.rows[0],

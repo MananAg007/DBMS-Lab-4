@@ -30,6 +30,8 @@ export const ContextProvider = (props) => {
   const[VEN, SVEN] = useState([]);
   const[UMP, SUMP] = useState([]);
   const[P1,SP1] = useState([]);
+  const [cat1, Scat1]= useState([]);
+  const [cat2, Scat2]= useState([]);
   
   const[P2,SP2] = useState([]);
   const[ pie2, setpie2]= useState([]);
@@ -92,6 +94,7 @@ export const ContextProvider = (props) => {
         addVenues,
         i2bat, seti2bat,
         i1bat, seti1bat,
+        cat1, Scat1, cat2, Scat2,
         matchInfo, setMatchInfo
       }}
     >

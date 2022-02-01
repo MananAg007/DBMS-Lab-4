@@ -17,7 +17,7 @@ const MatchDetailPage = () => {
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
-  const {  TBat1, MW, SMW, TBall1, STBat1, STBall1, TBat2, TBall2, STBat2, STBall2,   i2bat, seti2bat, pie, setpie,pie2, setpie2, ER1, SER1, SER2, ER2, TR1, TR2, STR1, STR2 } = useContext(
+  const {  cat1, Scat1, cat2, Scat2,TBat1, MW, SMW, TBall1, STBat1, STBall1, TBat2, TBall2, STBat2, STBall2,   i2bat, seti2bat, pie, setpie,pie2, setpie2, ER1, SER1, SER2, ER2, TR1, TR2, STR1, STR2 } = useContext(
     Context
   );
   const { i1bat, seti1bat , TossWinner, STossWinner, INF, VEN, UMP, P1, P2,  SINF, SVEN, SUMP, SP1, SP2, B1, SB1, B2, SB2, TW1, TW2, STW1, STW2} = useContext(
@@ -61,6 +61,8 @@ const MatchDetailPage = () => {
         SP1 (response.data.data.player1);
         SP2 (response.data.data.player2);
         STossWinner(response.data.data.TossWinner);
+        Scat1(response.data.data.cat1);
+        Scat2(response.data.data.cat2);
        
       } catch (err) {
         console.log(err);
