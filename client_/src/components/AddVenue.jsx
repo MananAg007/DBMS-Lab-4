@@ -4,14 +4,14 @@ import { Context } from '../context/Context';
 
 const AddVenue = () => {
     const head = {
-        color: '#7c795d', 'font-family': 'Trocchi', 
-        'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
-        'text-align': 'center'
+        color: '#7c795d', 'fontFamily': 'Trocchi', 
+        'fontSize': '60px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+        'textAlign': 'center'
       }
       const head2 = {
-        color: '#7c795d', 'font-family': 'Trocchi', 
-        'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
-        'text-align': 'center'
+        color: '#7c795d', 'fontFamily': 'Trocchi', 
+        'fontSize': '40px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+        'textAlign': 'center'
       }
 
       

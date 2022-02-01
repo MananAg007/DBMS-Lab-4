@@ -7,26 +7,26 @@ import {Bar, Doughnut} from 'react-chartjs-2';
 
 const PlayerDetailPage = () => {
   const head = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '60px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const head2 = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '40px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const { id } = useParams();
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
   const divStyleLeft = {
     width: '49.5%', 
     float: 'left',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   const divStyleRight = {
     width: '49.5%', 
     float: 'right',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   useEffect( ()=> {
     const fetchData = async () => {

@@ -12,17 +12,17 @@ const VenueDetailPage = () => {
   const divStyleLeft = {
     width: '30%', 
     float: 'left',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   const divStyleRight = {
     width: '65%', 
     float: 'right',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   const head = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '60px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   useEffect( ()=> {
     const fetchData = async () => {

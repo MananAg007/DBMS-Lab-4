@@ -13,37 +13,37 @@ import { useHistory } from "react-router-dom";
 const MatchDetailPage = () => {
   const { id } = useParams();
   const head = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '60px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const head2 = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '40px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const head3 = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '30px', 'font-weight': 'normal', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '30px', 'fontWeight': 'normal', 
+    'textAlign': 'center'
   }
   const head4 = {
-     'font-family': 'Trocchi', 
-    'font-size': '15px', 'font-weight': 'normal', 
-    'text-align': 'center'
+     'fontFamily': 'Trocchi', 
+    'fontSize': '15px', 'fontWeight': 'normal', 
+    'textAlign': 'center'
   }
   const divStyleLeft = {
     width: '49%', 
     float: 'left',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   const divStyleRight = {
     width: '49%', 
     float: 'right',
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   const butn = {
-    'text-align': 'center'
+    'textAlign': 'center'
   };
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context

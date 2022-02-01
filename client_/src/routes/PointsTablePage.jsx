@@ -4,19 +4,19 @@ import { useParams } from 'react-router-dom';
 import MatchFinder from '../apis/MatchFinder';
 import { Context } from '../context/Context';
 const head = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '60px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '60px', 'fontWeight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const head2 = {
     color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '40px', 'font-weight': 'normal', 'line-height': '48px', 
-    'text-align': 'center'
+    'fontSize': '40px', 'font-weight': 'normal', 'lineHeight': '48px', 
+    'textAlign': 'center'
   }
   const head3 = {
-    color: '#7c795d', 'font-family': 'Trocchi', 
-    'font-size': '30px', 'font-weight': 'normal', 
-    'text-align': 'center'
+    color: '#7c795d', 'fontFamily': 'Trocchi', 
+    'fontSize': '30px', 'fontWight': 'normal', 
+    'textAlign': 'center'
   }
 function PointsTablePage() {
     const {year} = useParams();
