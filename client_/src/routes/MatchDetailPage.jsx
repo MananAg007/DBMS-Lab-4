@@ -383,7 +383,7 @@ player.player_name  + '  '
  <div> Match ID : {id}, IPL ,  Season Year: {INF.season_year}</div>
  <br></br>
  <div style={divStyleLeft}>
- <div>{names.team_name1} - {TR1.total_runs} / {TW1.total_wickets} </div>
+ <div>{TN.bat1} - {TR1.total_runs} / {TW1.total_wickets} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -439,7 +439,7 @@ player.player_name  + '  '
 </div>
 
 <div style = {divStyleRight}>
- <div>{names.team_name2} - {TR2.total_runs} / {TW2.total_wickets} </div>
+ <div>{TN.bat2} - {TR2.total_runs} / {TW2.total_wickets} </div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
