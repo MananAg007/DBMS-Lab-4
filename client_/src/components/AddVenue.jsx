@@ -14,24 +14,7 @@ const AddVenue = () => {
         'text-align': 'center'
       }
 
-      const btn = {
-        position: 'relative',
-        width: '180px',
-        height: '60px',
-        margin: '20px',
-        'line-height': '60px',
-        'letter-spacing': '2px',
-        'text-decoration': 'none',
-        'text-transform': 'uppercase',
-        'text-align': 'center',
-        hover: {
-          border: '1px solid transparent',
-          background: 'var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px',
-          'transition-delay': '0.8s',
-          'background-size': '180px',
-          animation: 'animate var(--speed-fast) steps(8) forwards',
-      }
-    }
+      
     const {addVenues} = useContext(Context)
     const [vname, setVenueName] = useState("")
     const [cname, setCountryName] = useState("")
