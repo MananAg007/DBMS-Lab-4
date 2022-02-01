@@ -48,8 +48,8 @@ export const ContextProvider = (props) => {
   const [TR2, STR2] = useState([]);
   const [comp, setcomp] = useState([]);
   const [comp2, setcomp2] = useState([]);
-  const [ Summarytoggle,  Summarytogglefunc] = useState("1");
-  const[ cardtoggle, Scardtoggle] =useState("1");
+  const [ Summarytoggle,  Summarytogglefunc] = useState("0");
+  const[ cardtoggle, Scardtoggle] =useState("0");
   const [matchInfo, setMatchInfo] = useState([])
   const addMatches = (match) => {
     setMatches([...matches, match]);

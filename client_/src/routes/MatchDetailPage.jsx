@@ -239,7 +239,7 @@ const MatchDetailPage = () => {
           
         {UMP && UMP.map (player =>{
     return (
-player.umpire_name   
+player.umpire_name+'  '  
     )
   })}
           
@@ -249,12 +249,12 @@ player.umpire_name
                   
         {P1 && P1.map (player =>{
     return (
-player.player_name   
+player.player_name + ' '  
     )
   })}</td></tr>
         <tr><td>Playing XI of team2</td><td>     {P2 && P2.map (player =>{
     return (
-player.player_name   
+player.player_name  + '  '   
     )
   })}</td></tr>
         {/* <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr> */}

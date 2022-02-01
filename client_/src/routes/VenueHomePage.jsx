@@ -1,11 +1,10 @@
 import React from 'react';
 import AddVenue from '../components/AddVenue';
-import Header from '../components/Header';
 import VenueList from '../components/VenueList';
 
 const VenueHomePage = () => {
   return (<div>
-      <Header/>
+      <h1 className='font-weight-light display-1 text-center'>Venue Table</h1>
       <VenueList/>
       <AddVenue/>
   </div>);
