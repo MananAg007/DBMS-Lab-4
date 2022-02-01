@@ -50,7 +50,6 @@ const PlayerDetailPage = () => {
 return (<div >
 {/* <canvas id="lineChart" height="400" width="400"></canvas> */}
   <h1 style={head}>Player Details </h1>
-  <br></br>
 <table className="table table-hover table-dark table-striped table-bordered">
     <thead>
       <tr className='bg-primary'>
