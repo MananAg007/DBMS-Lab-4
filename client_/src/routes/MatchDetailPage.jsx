@@ -70,8 +70,8 @@ const MatchDetailPage = () => {
         SP1 (response.data.data.player1);
         SP2 (response.data.data.player2);
         STossWinner(response.data.data.TossWinner);
-        Scat1(response.data.data.cat1);
-        Scat2(response.data.data.cat2);
+        Scat1(response.data.data.innings1_scatter);
+        Scat2(response.data.data.innings2_scatter);
        
       } catch (err) {
         console.log(err);
@@ -305,31 +305,13 @@ player.player_name  + '  '
                 {
                   type: 'scatter',
                   label: 'Wicket',
-                  data: [{
-                    x: 9,
-                    y: 100
-                  }, {
-                    x: 10,
-                    y: 50
-                  }, {
-                    x: 11,
-                    y: 120
-                  }],
+                  data: cat1.map(v => ({x: v.over_id, y: Number(v.sum)})),
                   backgroundColor: 'rgb(255, 99, 132)'
                 },
                 {
                   type: 'scatter',
                   label: 'Wicket',
-                  data: [{
-                    x: 9,
-                    y: 101
-                  }, {
-                    x: 10,
-                    y: 51
-                  }, {
-                    x: 11,
-                    y: 121
-                  }],
+                  data:cat2.map(v => ({x: v.over_id, y: Number(v.sum)})),
                   backgroundColor: 'rgb(54, 162, 235)'
                 }
                 ],
