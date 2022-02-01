@@ -87,7 +87,7 @@ return (<div>
             plugins:{
               title:{
                 display:true,
-                text:'Average Rainfall per month',
+                text:'Win Distribution',
                 fontSize:50
               },
               legend:{

@@ -340,7 +340,7 @@ player.player_name  + '  '
     plugins:{
       title:{
         display:true,
-        text:'Average Rainfall per month',
+        text:'Runs Vs Overs',
         fontSize:50
       },
       legend:{
@@ -410,6 +410,7 @@ player.player_name  + '  '
             
           }}
         />
+        <br></br>
 </div> 
 
 <div style = {divStyleRight}>
@@ -450,11 +451,12 @@ player.player_name  + '  '
             
           }}
         />
+        <br></br>
 </div>
  
  <br></br>
  <div style={divStyleLeft}>
- <div style = {head4}>{TN.bat1} </div>
+ <div style = {head4}>{TN.bat1} || Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
@@ -510,7 +512,7 @@ player.player_name  + '  '
 </div>
 
 <div style = {divStyleRight}>
- <div style = {head4}>{TN.bat2} </div>
+ <div style = {head4}>{TN.bat2} || Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark">
           <thead>
