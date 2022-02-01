@@ -44,7 +44,9 @@ const App = () => {
                 </Switch>
              </Router>
         </div>
+        
         </ContextProvider>
+        
     )
 }
 

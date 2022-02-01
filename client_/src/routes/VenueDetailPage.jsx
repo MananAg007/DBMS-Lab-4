@@ -10,12 +10,12 @@ const VenueDetailPage = () => {
   const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
 
   const divStyleLeft = {
-    width: '40%', 
+    width: '30%', 
     float: 'left',
     'text-align': 'center'
   };
   const divStyleRight = {
-    width: '49%', 
+    width: '65%', 
     float: 'right',
     'text-align': 'center'
   };
@@ -39,7 +39,7 @@ const VenueDetailPage = () => {
     fetchData();
 },[]) 
 
-return (<div className='list-group'>
+return (<div>
        
         
   <h1 className='font-weight-light display-1 text-center'>Venue Details </h1>
@@ -60,7 +60,7 @@ return (<div className='list-group'>
         <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr>
     </tbody>
 </table>
-<div>
+<div style = {divStyleLeft}>
 <Doughnut
           data={{
             labels: ['Team Batting First: Won', 'Team Batting Second: Won',
@@ -95,8 +95,8 @@ return (<div className='list-group'>
           }}
         />
         </div>
-        <div>
-<Line
+        <div style = {divStyleRight}>
+          <Line
           data={{
             labels: V8.map((crypto) => crypto.season_year),
             datasets: [
@@ -125,8 +125,8 @@ return (<div className='list-group'>
             }
             
           }}
-        />
-</div>
+        /></div>
+
 </div>
 );
 
