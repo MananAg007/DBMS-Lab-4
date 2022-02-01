@@ -13,7 +13,14 @@ import { useHistory } from "react-router-dom";
 const MatchDetailPage = () => {
   const { id } = useParams();
 
-
+  const divStyleLeft = {
+    width: '50%', 
+    float: 'left'
+  };
+  const divStyleRight = {
+    width: '50%', 
+    float: 'right'
+  };
   // const { selectedMatch, setSelectedMatch } = useContext(
   //   Context
   // );
@@ -78,7 +85,7 @@ const MatchDetailPage = () => {
 
   
   return <div>
-      <h1 className='font-weight-light display-1 text-center'>ScoreCard </h1>
+      <h1 className='font-weight-light display-1 text-center'>Score Card </h1>
       <div>
       <h3>Inning 1 : {TN.bat1} </h3>
       <h3>Batting</h3>
@@ -482,10 +489,13 @@ player.player_name  + '  '
   </div>
 
   {MW.team_name} won by {INF.win_margin} {INF.win_type}
+<br></br>
 
 
+          
+<div style={divStyleLeft}>
 <h3>Pie plot for {TN.bat1}</h3>
-           <Doughnut
+<Doughnut
           data={{
             labels: [
                      'Ones', 'Twos','Fours', 'Sixes', 'Extras'],
@@ -518,8 +528,9 @@ player.player_name  + '  '
             },
           }}
         />
+</div> 
 
-
+<div style = {divStyleRight}>
 <h3>Pie plot for {TN.bat2}</h3>
 <Doughnut
           data={{
@@ -555,6 +566,8 @@ player.player_name  + '  '
             },
           }}
         />
+</div>
+
 
           </div>
        ) : null}
@@ -563,6 +576,7 @@ player.player_name  + '  '
 
   
   </div> 
+  
 };
 export default MatchDetailPage;
 
