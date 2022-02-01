@@ -271,7 +271,7 @@ player.player_name
        
        {
                  labels: comp.map((crypto) => crypto.over_id),
-                 
+                 type: 'line',
                  datasets : [{
                   pointRadius: 0,
                    fill: false,
@@ -283,7 +283,7 @@ player.player_name
                  data: comp.map ((cr) => cr.sum)
                  },
                  {
-                  
+                  type: 'line',
                   fill: false,
                   lineTension: 0.5,
                   borderColor:'rgb(54, 162, 235)',
@@ -292,8 +292,39 @@ player.player_name
                   pointRadius: 0,
                 label: TN.bat2,
                 data: comp2.map ((cr) => cr.sum)
+                },
+                {
+                  type: 'scatter',
+                  label: 'Wicket',
+                  data: [{
+                    x: 9,
+                    y: 100
+                  }, {
+                    x: 10,
+                    y: 50
+                  }, {
+                    x: 11,
+                    y: 120
+                  }],
+                  backgroundColor: 'rgb(255, 99, 132)'
+                },
+                {
+                  type: 'scatter',
+                  label: 'Wicket',
+                  data: [{
+                    x: 9,
+                    y: 101
+                  }, {
+                    x: 10,
+                    y: 51
+                  }, {
+                    x: 11,
+                    y: 121
+                  }],
+                  backgroundColor: 'rgb(54, 162, 235)'
                 }
-                ]
+                ],
+                
                  
                  } 
       }
