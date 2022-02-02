@@ -277,7 +277,7 @@ app.get("/venues/:id", async (req, res) => {
         const q5 = db.query("select count(*) from match where ((toss_name = 'bat' and match_winner = toss_winner) or (toss_name = 'field' and match_winner <> toss_winner)) and venue_id = $1;", [req.params.id]);
         const q6 = db.query("select count(*) from match where ((toss_name = 'bat' and match_winner <>toss_winner) or (toss_name = 'field' and match_winner = toss_winner)) and venue_id = $1;", [req.params.id]);
         const q7 = db.query("select count(*) from match where match_winner = -1 and venue_id = $1;", [req.params.id]);
-        const q8 = db.query("with res as (select match.match_id, season_year, sum(runs_scored) from ball_by_ball, match where ball_by_ball.match_id = match.match_id and innings_no = 1 and venue_id = $1 group by match.match_id, season_year) select coalesce(avg(sum),0), season_year from res group by season_year ;", [req.params.id]);
+        const q8 = db.query("with res as (select match.match_id, season_year, sum(runs_scored) from ball_by_ball, match where ball_by_ball.match_id = match.match_id and innings_no = 1 and venue_id = $1 group by match.match_id, season_year) select coalesce(avg(sum),0) as avg, season_year from res group by season_year ;", [req.params.id]);
         res.status(200).json({
             status: "success",
             data: {
@@ -329,7 +329,7 @@ app.get("/players/:id", async (req, res) => {
         const q4 = db.query("With res as (select match_id, sum(runs_scored), count(*) as balls , count(out_type) as outs from ball_by_ball where striker = $1 group by match_id) select max(sum), count(case when (sum >= 50 and sum <100) then 1 end), ROUND(100.0 * sum(sum) / sum(balls) * 1.0, 2) as strike_rate, ROUND(1.0 * sum(sum) / (case when sum(outs) > 0 then sum(outs) else 1 end) * 1.0, 2) as average from res;", [req.params.id])
         const q5 = db.query("with res as (select count(distinct match_id), count(out_type) as outs, count(*) as balls, coalesce(sum(runs_scored + extra_runs),0) as sum, (count(case when ball_id<=6 then 1 end)-1)/6+1  as overs  from ball_by_ball where ($1 = bowler)) select count, outs, balls, sum, overs, ROUND((1.0*sum)/overs,2) as avg from res;", [req.params.id]);
         const q6 = db.query("with res as (select count(out_type), match_id from ball_by_ball where ($1 = bowler) group by match_id) select count(*) from res where count>= 5;", [req.params.id]);
-        const q7 = db.query("select coalesce(sum(runs_scored),0), match_id from ball_by_ball where striker = $1 group by match_id;", [req.params.id]);
+        const q7 = db.query("select coalesce(sum(runs_scored),0) as sum, match_id from ball_by_ball where striker = $1 group by match_id;", [req.params.id]);
         const q8 = db.query("select count(out_type), sum(runs_scored + extra_runs), match_id from ball_by_ball where bowler = $1 group by match_id;", [req.params.id]);
         console.log(q1)
         res.status(200).json({
