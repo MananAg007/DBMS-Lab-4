@@ -54,7 +54,7 @@ const MatchDetailPage = () => {
   const { i1bat, seti1bat , TossWinner, STossWinner, INF, VEN, UMP, P1, P2,  SINF, SVEN, SUMP, SP1, SP2, B1, SB1, B2, SB2, TW1, TW2, STW1, STW2} = useContext(
     Context
   );
-  const {comp, setcomp,comp2, setcomp2, names,  SNames, cardtoggle, Scardtoggle,  Summarytogglefunc, Summarytoggle, TN,  STN}=  useContext(
+  const {comp, setcomp,comp2, setcomp2, names,  SNames, cardtoggle, Scardtoggle,  Summarytogglefunc, Summarytoggle, TN,  STN, V1, SV1, V2, SV2, V3, SV3}=  useContext(
     Context
   );
   let history = useHistory();
@@ -94,6 +94,7 @@ const MatchDetailPage = () => {
         STossWinner(response.data.data.TossWinner);
         Scat1(response.data.data.innings1_scatter);
         Scat2(response.data.data.innings2_scatter);
+        SV1(response.data.data.total_overs);
        
       } catch (err) {
         console.log(err);
@@ -297,7 +298,7 @@ player.player_name  + '  '
        
        {
          
-                 labels: comp.map((crypto) => crypto.over_id),
+                 labels: V1.map((crypto) => crypto.over_id),
                  type: 'line',
                  datasets : [
                   {

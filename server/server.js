@@ -57,7 +57,9 @@ app.get("/matches/:id", async (req, res)=>{
     try {
 
         // const results = await db.query("select * from match where match_id = $1", [req.params.id]);
-
+        const total_overs = await db.query("select distinct over_id from ball_by_ball where match_id = $1 order by over_id;", [req.params.id]);
+        const overs1 = await db.query("select max(over_id) from ball_by_ball where match_id = $1 and innings_no = 1;", [req.params.id]);
+        const overs2 = await db.query("select max(over_id) from ball_by_ball where match_id = $1 and innings_no = 2;", [req.params.id]);
         const q1= `with T1 as
         (select striker, coalesce(sum(runs_scored),0)  as runs from ball_by_ball where match_id =  $1 and innings_no = $2 group by striker),
         T2 as 
@@ -194,7 +196,10 @@ app.get("/matches/:id", async (req, res)=>{
                 innings1_total_wickets : innings1_total_wickets.rows[0],
                 pieplot: pieplot.rows[0],
                 pieplot2 : pieplot2.rows[0],
-                battingOrder : battingOrder .rows[0]
+                battingOrder : battingOrder .rows[0],
+                overs1: overs1.rows[0],
+                overs2: overs2.rows[0],
+                total_overs: total_overs.rows
 
             }
         });
