@@ -157,7 +157,7 @@ return (<div >
                 {
                     type: 'line',
                   label: 'Wickets Taken',
-                  backgroundColor: 'rgba(75,192,192,1)',
+                  backgroundColor: 'rgb(255, 99, 132)',
                   borderColor: 'rgba(0,0,0,1)',
                   borderWidth: 2,
                   data: V8.map((cr) => cr.count)
@@ -165,8 +165,8 @@ return (<div >
               {
                   type: 'bar',
                 label: 'Runs Conceded',
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgb(54, 162, 235)',
+                borderColor: 'rgb(54, 162, 235)',
                 borderWidth: 2,
                 data: V8.map((cr) => cr.sum)
               },

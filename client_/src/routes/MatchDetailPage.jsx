@@ -296,9 +296,24 @@ player.player_name  + '  '
       data = {
        
        {
+         
                  labels: comp.map((crypto) => crypto.over_id),
                  type: 'line',
-                 datasets : [{
+                 datasets : [
+                  {
+                    type: 'scatter',
+                    label: 'Wicket',
+                    data: cat1.map(v => ({x: v.over_id, y: Number(v.sum)})),
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgba(0,0,0,1)'
+                  },
+                  {
+                    type: 'scatter',
+                    label: 'Wicket',
+                    data:cat2.map(v => ({x: v.over_id, y: Number(v.sum)})),
+                    backgroundColor: 'rgb(54, 162, 235)',
+                    borderColor: 'rgba(0,0,0,1)'
+                  },{
                   pointRadius: 0,
                    fill: false,
                    lineTension: 0.5,
@@ -318,18 +333,6 @@ player.player_name  + '  '
                   pointRadius: 0,
                 label: TN.bat2,
                 data: comp2.map ((cr) => cr.sum)
-                },
-                {
-                  type: 'scatter',
-                  label: 'Wicket',
-                  data: cat1.map(v => ({x: v.over_id, y: Number(v.sum)})),
-                  backgroundColor: 'rgb(255, 99, 132)'
-                },
-                {
-                  type: 'scatter',
-                  label: 'Wicket',
-                  data:cat2.map(v => ({x: v.over_id, y: Number(v.sum)})),
-                  backgroundColor: 'rgb(54, 162, 235)'
                 }
                 ],
                 

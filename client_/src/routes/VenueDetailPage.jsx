@@ -108,7 +108,7 @@ return (<div>
                 label: 'Average First Innings score',
                 fill: false,
                 lineTension: 0.5,
-                backgroundColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 2,
                 data: V8.map((cr) => cr.avg)
