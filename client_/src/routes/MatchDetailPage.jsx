@@ -95,6 +95,8 @@ const MatchDetailPage = () => {
         Scat1(response.data.data.innings1_scatter);
         Scat2(response.data.data.innings2_scatter);
         SV1(response.data.data.total_overs);
+        SV2(response.data.data.overs1);
+        SV3(response.data.data.overs2);
        
       } catch (err) {
         console.log(err);
@@ -113,7 +115,7 @@ const MatchDetailPage = () => {
       <h1 style = {head}>Score Card </h1>
       <div>
       <h3 style={head2}>Innings 1 : {TN.bat1} </h3>
-      <h3 style={head3}>Batting</h3>
+      <h3 style={head3}>Batting </h3>
 <div className='list-group'>
       <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
@@ -147,7 +149,7 @@ const MatchDetailPage = () => {
   </div>
 
 
-  <h3 style = {head4}>Total Score : {TR1.total_runs} ({TW1.total_wickets}) ||  Extras : {ER1.extra_runs }</h3>
+  <h3 style = {head4}>Total Score : {TR1.total_runs} ({TW1.total_wickets}) ||  Extras : {ER1.extra_runs } <br></br> Overs Played : {V2.max}</h3>
  
   <div>
       <h3 style={head3}>Bowling</h3>
@@ -215,7 +217,7 @@ const MatchDetailPage = () => {
       </table>
   </div>
   </div>
-  <h3 style={head4}>Total Score : {TR2.total_runs} ({TW2.total_wickets}) || Extras : {ER2.extra_runs }</h3>
+  <h3 style={head4}>Total Score : {TR2.total_runs} ({TW2.total_wickets}) || Extras : {ER2.extra_runs } <br></br>Overs Played : {V3.max} </h3>
   
   <div>
       <h3 style={head3}>Bowling</h3>
