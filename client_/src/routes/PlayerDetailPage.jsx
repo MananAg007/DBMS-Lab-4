@@ -17,7 +17,7 @@ const PlayerDetailPage = () => {
     'textAlign': 'center'
   }
   const { id } = useParams();
-  const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8} = useContext(Context)
+  const {V1,SV1, V2, SV2, V3, SV3, V4, SV4, V5, SV5, V6, SV6, V7, SV7, V8, SV8, V9, SV9, V10, SV10} = useContext(Context)
   const divStyleLeft = {
     width: '49.5%', 
     float: 'left',
@@ -41,6 +41,8 @@ const PlayerDetailPage = () => {
             SV6(response.data.data.r6);
             SV7(response.data.data.r7);
             SV8(response.data.data.r8);
+            SV9(response.data.data.r9);
+            SV10(response.data.data.r10);
         } catch (err) {}
     }
 
@@ -107,14 +109,28 @@ return (<div >
 </table></div>
 <div style = {divStyleLeft}><Bar
           data={{
-            labels: V7.map((crypto) => crypto.match_id),
+            labels: V10.map((crypto) => crypto.match_id),
             datasets: [
               {
-                label: 'Runs scored',
-                backgroundColor: 'rgba(75,192,192,1)',
-                borderColor: 'rgba(75,192,192,1)',
+                label: 'Score < 30',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 2,
                 data: V7.map((cr) => cr.sum)
+              },
+              {
+                label: 'Score >= 30 and <50',
+                backgroundColor: 'rgb(255, 205, 86)',
+                borderColor: 'rgb(255, 205, 86)',
+                borderWidth: 2,
+                data: V9.map((cr) => cr.sum)
+              },
+              {
+                label: 'Score >= 50',
+                backgroundColor: 'rgb(54, 162, 235)',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 2,
+                data: V10.map((cr) => cr.sum)
               }
             ]
           }}

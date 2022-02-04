@@ -329,8 +329,10 @@ app.get("/players/:id", async (req, res) => {
         const q4 = db.query("With res as (select match_id, sum(runs_scored), count(*) as balls , count(out_type) as outs from ball_by_ball where striker = $1 group by match_id) select max(sum), count(case when (sum >= 50 and sum <100) then 1 end), ROUND(100.0 * sum(sum) / sum(balls) * 1.0, 2) as strike_rate, ROUND(1.0 * sum(sum) / (case when sum(outs) > 0 then sum(outs) else 1 end) * 1.0, 2) as average from res;", [req.params.id])
         const q5 = db.query("with res as (select count(distinct match_id), count(out_type) as outs, count(*) as balls, coalesce(sum(runs_scored + extra_runs),0) as sum, count(case when ball_id<=6 then 1 end)/6 + (case when count(case when ball_id<=6 then 1 end)%6 =0 then 0 else 1 end)  as overs  from ball_by_ball where ($1 = bowler)) select count, outs, balls, sum, overs, (case when overs = 0 then 0 else ROUND((1.0*sum)/overs,2) end) as avg from res;", [req.params.id]);
         const q6 = db.query("with res as (select count(out_type), match_id from ball_by_ball where ($1 = bowler) group by match_id) select count(*) from res where count>= 5;", [req.params.id]);
-        const q7 = db.query("select coalesce(sum(runs_scored),0) as sum, match_id from ball_by_ball where striker = $1 group by match_id;", [req.params.id]);
+        const q7 = db.query("with res as (select coalesce(sum(runs_scored),0) as sum, match_id from ball_by_ball where striker = $1 group by match_id) select (case when sum <30 then sum else 0 end) as sum, match_id from res;", [req.params.id]);
         const q8 = db.query("select count(out_type), sum(runs_scored + extra_runs), match_id from ball_by_ball where bowler = $1 group by match_id;", [req.params.id]);
+        const q9 = db.query("with res as (select coalesce(sum(runs_scored),0) as sum, match_id from ball_by_ball where striker = $1 group by match_id) select (case when sum >=30 and sum < 50 then sum else 0 end) as sum, match_id from res;", [req.params.id]);
+        const q10 = db.query("with res as (select coalesce(sum(runs_scored),0) as sum, match_id from ball_by_ball where striker = $1 group by match_id) select (case when sum >=50 then sum else 0 end) as sum, match_id from res;", [req.params.id]);
         console.log(q1)
         res.status(200).json({
             status: "success",
@@ -342,7 +344,9 @@ app.get("/players/:id", async (req, res) => {
                 r5: (await q5).rows[0],
                 r6: (await q6).rows[0],
                 r7: (await q7).rows,
-                r8: (await q8).rows
+                r8: (await q8).rows,
+                r9: (await q9).rows,
+                r10: (await q10).rows,
             }
         });
     }
