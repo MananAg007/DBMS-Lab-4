@@ -219,10 +219,10 @@ app.get("/pointstable/:year", async (req, res)=>{
         A as (select * from ball_by_ball natural join player_match where ball_by_ball.match_id in (select * from M) and ball_by_ball.match_id = player_match.match_id and player_id = striker) ,
          B as (select * from ball_by_ball natural join player_match where ball_by_ball.match_id in (select * from M) and ball_by_ball.match_id = player_match.match_id and player_id = bowler) ,
          T(tid,mid,runsScored, oversPlayed) as (
-            select team_id,match_id, sum(runs_scored), count(distinct over_id) from A group by team_id,match_id
+            select team_id,match_id, sum(runs_scored + extra_runs), count(distinct over_id) from A group by team_id,match_id
         ),
         OP(tid, mid,opponentRunsScored, opponentOversPlayed) as (
-            select team_id,match_id, sum(runs_scored), count(distinct over_id) from B group by team_id,match_id
+            select team_id,match_id, sum(runs_scored + extra_runs), count(distinct over_id) from B group by team_id,match_id
         ),
        
         N as (
