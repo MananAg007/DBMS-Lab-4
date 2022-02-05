@@ -3,7 +3,6 @@ Steps to run the Website->
 2) Create a .env file in the server directory and add:
   
   PORT = 3006
-  
   PGUSER= {dbusername}
   PGHOST= 127.0.0.1
   PGPASSWORD={dbpassword}
