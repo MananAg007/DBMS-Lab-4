@@ -110,7 +110,7 @@ app.get("/matches/:id", async (req, res)=>{
         T2 as 
         (select bowler, coalesce(count(*),0)  as wickets from ball_by_ball where match_id =  $1 and innings_no = $2  and out_type is not null and out_type not in ('run out','retired hurt') group by bowler),
         T3 as 
-        (select bowler, coalesce(count ( distinct ball_id),0)  as balls_bowled from ball_by_ball where match_id =  $1 and innings_no = $2  group by bowler),
+        (select bowler, coalesce(count (*),0)  as balls_bowled from ball_by_ball where match_id =  $1 and innings_no = $2  group by bowler),
         T4 as  (select T1.bowler as bowler_id , coalesce(runs_given,0) as runs_given,  coalesce(wickets, 0) as wickets , coalesce(balls_bowled, 0) as balls_bowled from T1 full outer join  T2 on T1.bowler = T2.bowler  full outer join  T3 on Coalesce(T1.bowler , T2.bowler ) = T3.bowler )
         select * from T4, player where player_id = bowler_id;`
         const innings1_bowling = await db.query(q5, [req.params.id, 1]);
