@@ -2,12 +2,12 @@ Steps to run the Website->
 1) Clone the repository
 2) Create a .env file in the server directory and add:
   
-  PORT = 3006
-  PGUSER= {dbusername}
-  PGHOST= 127.0.0.1
-  PGPASSWORD={dbpassword}
-  PGDATABASE={database}
-  PGPORT=5432
+  PORT = 3006 <br/>
+  PGUSER= {dbusername} <br/>
+  PGHOST= 127.0.0.1 <br/>
+  PGPASSWORD={dbpassword} <br/>
+  PGDATABASE={database} <br/>
+  PGPORT=5432 <br/>
   
   You need to enter your login credentials in the {} fields, and copy the rest exactly.
 
