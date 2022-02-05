@@ -10,7 +10,7 @@
   PGPORT=5432 <br/>
   
   You need to enter your login credentials in the {} fields, and copy the rest exactly. <br/>
-  In case you need to clear up port 3006, use command : npx kill-port 3006
+  In case you need to clear the process on port 3006, use command : npx kill-port 3006
 
 3) Initialise the auto-incrementing key value using "Select setval(‘auto_increment_id_seq’, {some value} );" in your postgres database.
 4) On two separate terminals inside the backend and frontend directory, do: npm install && npm start
