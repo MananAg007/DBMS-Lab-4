@@ -224,15 +224,19 @@ app.get("/pointstable/:year", async (req, res)=>{
         OP(tid, mid,opponentRunsScored, opponentOversPlayed) as (
             select team_id,match_id, sum(runs_scored), count(distinct over_id) from B group by team_id,match_id
         ),
-        N(tid, mid,val) as (
-            select T.tid, T.mid, ROUND((T.runsScored*1.0/T.oversPlayed) - (OP.opponentRunsScored*1.0/opponentOversPlayed),2)
+       
+        N as (
+            select T.tid as tid, T.mid as mid, T.runsScored as runsScored ,T.oversPlayed as oversPlayed, OP.opponentRunsScored as opponentRunsScored , opponentOversPlayed
             from T natural join OP 
-        ),  CountVals as (
+        ),  
+      
+        CountVals as (
         select team_id, 
         (select count(*) from match where match_winner = team_id) as won, 0 as tied,
          (select count(*) from match where team_id in (team1, team2)) as mat, (select 2*count(*) from match where match_winner = team_id) as pts
          from team),
-        NRRVals (tid, NRR) as ( select tid, sum(val) from N group by tid),
+
+        NRRVals (tid, nrr) as (select tid,  ROUND(sum(runsScored)*1.0/sum(oversPlayed) - (sum(opponentRunsScored)*1.0/sum(opponentOversPlayed)) ,2)  from N group by tid),
         AllVals as (select * from NRRVals, CountVals where tid = team_id)
         select * , (mat - won- tied)  as lost from team, AllVals where team.team_id = tid order by pts desc;`, [req.params.year]);
     // console.log(results.data.data.matchInfo);
