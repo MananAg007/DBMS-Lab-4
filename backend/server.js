@@ -238,7 +238,7 @@ app.get("/pointstable/:year", async (req, res)=>{
 
         NRRVals (tid, nrr) as (select tid,  ROUND(sum(runsScored)*1.0/sum(oversPlayed) - (sum(opponentRunsScored)*1.0/sum(opponentOversPlayed)) ,2)  from N group by tid),
         AllVals as (select * from NRRVals, CountVals where tid = team_id)
-        select * , (mat - won- tied)  as lost from team, AllVals where team.team_id = tid order by pts desc;`, [req.params.year]);
+        select * , (mat - won- tied)  as lost from team, AllVals where team.team_id = tid order by pts desc, nrr desc;`, [req.params.year]);
     // console.log(results.data.data.matchInfo);
         res.status(200).json({
             status: "success",
