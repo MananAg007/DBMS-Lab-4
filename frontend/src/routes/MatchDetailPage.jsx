@@ -29,7 +29,7 @@ const MatchDetailPage = () => {
   }
   const head4 = {
      'fontFamily': 'Trocchi', 
-    'fontSize': '15px', 'fontWeight': 'normal', 
+    'fontSize': '18px', 'fontWeight': 'normal', 
     'textAlign': 'center'
   }
   const divStyleLeft = {
@@ -275,15 +275,15 @@ player.umpire_name+'  '
           
           </td></tr>
         <tr><td>Playing XI of team1</td><td>
-                  
+                 ||  
         {P1 && P1.map (player =>{
     return (
-player.player_name + ' '  
+' ' + player.player_name + ' || ' 
     )
   })}</td></tr>
-        <tr><td>Playing XI of team2</td><td>     {P2 && P2.map (player =>{
+        <tr><td>Playing XI of team2</td><td>  ||   {P2 && P2.map (player =>{
     return (
-player.player_name  + '  '   
+' ' + player.player_name  + ' || '   
     )
   })}</td></tr>
         {/* <tr><td>Highest Score Chased</td><td>{V4.highest}</td></tr> */}
