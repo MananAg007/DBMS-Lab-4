@@ -462,7 +462,7 @@ player.player_name  + '  '
  
  <br></br>
  <div style={divStyleLeft}>
- <div style = {head4}>{TN.bat1} || Top Players</div>
+ <div style = {head4}>{TN.bat1} {TN.bat1 === TossWinner.name ? (" (Toss) ")    : null} || Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
@@ -518,7 +518,7 @@ player.player_name  + '  '
 </div>
 
 <div style = {divStyleRight}>
- <div style = {head4}>{TN.bat2} || Top Players</div>
+ <div style = {head4}>{TN.bat2} {TN.bat2 === TossWinner.name ? (" (Toss) ")    : null}|| Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
