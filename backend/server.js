@@ -232,8 +232,8 @@ app.get("/pointstable/:year", async (req, res)=>{
       
         CountVals as (
         select team_id, 
-        (select count(*) from match where match_winner = team_id) as won, 0 as tied,
-         (select count(*) from match where team_id in (team1, team2)) as mat, (select 2*count(*) from match where match_winner = team_id) as pts
+        (select count(*) from match where match_winner = team_id and match_id in (select * from M)) as won, 0 as tied,
+         (select count(*) from match where team_id in (team1, team2)  and match_id in (select * from M)) as mat, (select 2*count(*) from match where match_winner = team_id  and match_id in (select * from M)) as pts
          from team),
 
         NRRVals (tid, nrr) as (select tid,  ROUND(sum(runsScored)*1.0/sum(oversPlayed) - (sum(opponentRunsScored)*1.0/sum(opponentOversPlayed)) ,2)  from N group by tid),
