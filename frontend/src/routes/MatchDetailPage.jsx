@@ -159,8 +159,8 @@ const MatchDetailPage = () => {
             <tr className='bg-primary'>
                 <th scope = "col">  Bowler</th>
                 <th scope = "col">Balls Bowled</th>
-                <th scope = "col">runs_given</th>
-                <th scope = "col">wickets</th>
+                <th scope = "col">Runs Given</th>
+                <th scope = "col">Wickets</th>
             </tr>
           </thead>
           <tbody>
@@ -227,8 +227,8 @@ const MatchDetailPage = () => {
             <tr className='bg-primary'>
                 <th scope = "col">  Bowler</th>
                 <th scope = "col">Balls Bowled</th>
-                <th scope = "col">runs_given</th>
-                <th scope = "col">wickets</th>
+                <th scope = "col">Runs Given</th>
+                <th scope = "col">Wickets</th>
             </tr>
           </thead>
           <tbody>
@@ -462,7 +462,7 @@ player.umpire_name+'  '
  
  <br></br>
  <div style={divStyleLeft}>
- <div style = {head4}>{TN.bat1} {TN.bat1 === TossWinner.name ? (" (Toss) ")    : null} || Top Players</div>
+ <div style = {head4}>{TN.bat1} {TN.bat1 === TossWinner.name ? (" (Toss Winner) ")    : null} || Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
@@ -499,7 +499,7 @@ player.umpire_name+'  '
             </tr>
           </thead>
 <tbody>
-  {TBall1 && TBall1.map (player =>{
+  {TBall2 && TBall2.map (player =>{
     return (
 <tr 
  key={player.bowler}
@@ -518,7 +518,7 @@ player.umpire_name+'  '
 </div>
 
 <div style = {divStyleRight}>
- <div style = {head4}>{TN.bat2} {TN.bat2 === TossWinner.name ? (" (Toss) ")    : null}|| Top Players</div>
+ <div style = {head4}>{TN.bat2} {TN.bat2 === TossWinner.name ? (" (Toss Winner) ")    : null}|| Top Players</div>
  <div className='list-group'>
       <table className="table table-hover table-dark table-striped table-bordered">
           <thead>
@@ -556,7 +556,7 @@ player.umpire_name+'  '
             </tr>
           </thead>
 <tbody>
-  {TBall2 && TBall2.map (player =>{
+  {TBall1 && TBall1.map (player =>{
     return (
 <tr 
  key={player.bowler}
