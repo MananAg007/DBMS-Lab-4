@@ -164,7 +164,7 @@ const MatchDetailPage = () => {
             </tr>
           </thead>
           <tbody>
-  {B1 && B1.map (player =>{
+  {B2 && B2.map (player =>{
     return (
 <tr 
  key={player.player_id}
@@ -232,7 +232,7 @@ const MatchDetailPage = () => {
             </tr>
           </thead>
           <tbody>
-  {B2 && B2.map (player =>{
+  {B1 && B1.map (player =>{
     return (
 <tr 
  key={player.player_id}
