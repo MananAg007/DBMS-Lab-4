@@ -143,14 +143,14 @@ app.get("/matches/:id", async (req, res)=>{
         `
         const Teamnames = await db.query(q13, [req.params.id]);
 
-        const q14 = `with A as (select player_name,striker, count(*) as num_balls, coalesce (sum(runs_scored+ extra_runs),0) as runs_scored from ball_by_ball, player where match_id =  $1 and innings_no = $2 and player_id = striker group by striker, player_name) 
+        const q14 = `with A as (select player_name,striker, count(*) as num_balls, coalesce (sum(runs_scored),0) as runs_scored from ball_by_ball, player where match_id =  $1 and innings_no = $2 and player_id = striker group by striker, player_name) 
         select * from A where num_balls > 0  order by runs_scored desc, num_balls asc, player_name asc limit 3;
         
         `
         const TopBatters1 = await  db.query(q14, [req.params.id, 1]);
         const TopBatters2 = await  db.query(q14, [req.params.id, 2]);
 
-        const q15 = `with A as (select player_name, bowler, count(out_type) as wickets_taken, coalesce (sum(runs_scored),0) as runs_given from ball_by_ball, player where match_id =  $1 and innings_no = $2 and player_id = bowler group by bowler, player_name) 
+        const q15 = `with A as (select player_name, bowler, count(case when out_type is not null and out_type not in ('run out','retired hurt') then 1 end) as wickets_taken, coalesce (sum(runs_scored),0) as runs_given from ball_by_ball, player where match_id =  $1 and innings_no = $2 and player_id = bowler group by bowler, player_name) 
         select * from A where wickets_taken > 0  order by  wickets_taken desc , runs_given , player_name asc limit 3;
         
         `
